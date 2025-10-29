@@ -9,7 +9,7 @@ export const CallToAction = () => {
     <section className={styles.section} data-section="white">
       <div className={styles.container}>
         <div className={styles.innerContainer}>
-          <Link href={"/demo" as unknown as UrlObject} className={styles.panel}>
+          <Link href={"/beta-test" as unknown as UrlObject} className={styles.panel}>
             <h2 className={styles.title}>INIZIA<br />GRATIS ORA</h2>
             <p className={styles.description}>
               Inizia oggi la tua prova gratuita di 1 mese
