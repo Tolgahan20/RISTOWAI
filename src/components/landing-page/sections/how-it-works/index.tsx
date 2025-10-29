@@ -130,9 +130,12 @@ export const HowItWorks = () => {
                   </div>
                   <p className={styles.stepDescription}>{step.description}</p>
                   {step.note && (
-                    <button className={styles.stepNote}>
+                    <a 
+                      href="mailto:info@ristowai.com?subject=Richiesta%20Onboarding%20Locale&body=Ciao%2C%20sono%20%5BNome%20Locale%5D%20e%20mi%20servirebbe%20onboarding%20locale.%20Grazie."
+                      className={styles.stepNote}
+                    >
                       {step.note}
-                    </button>
+                    </a>
                   )}
                 </div>
                 {index < steps.length - 1 && (

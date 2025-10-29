@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
           <h2 ref={line2Ref} className={styles.line2}>
             Cambiare per <br />sempre
             il modo <br />in cui
-            si fa un <br /> buon lavoro.
+            si fa <br /> ristorazione.
           </h2>
         </div>
       </div>

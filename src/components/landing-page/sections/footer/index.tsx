@@ -65,9 +65,9 @@ export const Footer = () => {
           <div className={styles.linkGroup}>
             <h3 className={styles.groupTitle}>Legale</h3>
             <div className={styles.linkList}>
-              {renderLink('/privacy', 'Privacy Policy')}
-              {renderLink('/terms', 'Terms of Service')}
-              {renderLink('/cookies', 'Cookie Policy')}
+              {renderLink('/legal?section=privacy', 'Privacy Policy')}
+              {renderLink('/legal?section=terms', 'Terms of Service')}
+              {renderLink('/legal?section=cookies', 'Cookie Policy')}
             </div>
           </div>
         </div>
