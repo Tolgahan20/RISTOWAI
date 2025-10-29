@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from './desktop-nav.module.css';
 import { ArrowUpRight } from 'react-feather';
 import { UrlObject } from 'url';
@@ -17,6 +18,7 @@ const navItems = [
 
 export const DesktopNav: React.FC = () => {
   const [mode, setMode] = useState<'default' | 'dark' | 'white'>('default');
+  const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const rafRef = useRef<number>(null);
   const lastScrollTime = useRef<number>(0);
@@ -108,13 +110,18 @@ export const DesktopNav: React.FC = () => {
 
         <div className={styles.navListContainer}>
           <ul className={styles.navList}>
-            {navItems.map((item) => (
-              <li key={item.label} className={styles.navItem}>
-                <Link href={item.href} className={styles.navLink}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              // If we're not on the homepage, prepend "/" to the href
+              const isHomepage = pathname === '/';
+              const href = isHomepage ? item.href : `/${item.href}`;
+              return (
+                <li key={item.label} className={styles.navItem}>
+                  <Link href={href as unknown as UrlObject} className={styles.navLink}>
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
 

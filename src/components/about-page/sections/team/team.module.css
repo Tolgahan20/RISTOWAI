@@ -1,0 +1,225 @@
+.section {
+  background-color: var(--pure-white);
+  padding: 128px 0;
+  position: relative;
+}
+
+.container {
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+  padding: 0 128px;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--pure-black);
+  margin: 0 0 96px 0;
+  text-align: center;
+}
+
+.membersGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 64px;
+  background: var(--pure-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.memberCard:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
+}
+
+.memberHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.memberName {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--pure-black);
+  margin: 0 0 8px 0;
+}
+
+.memberTitle {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--primary-green);
+  margin: 0;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  color: var(--pure-black);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  background-color: var(--pure-black);
+  color: var(--pure-white);
+  border-color: var(--pure-black);
+  transform: translateY(-2px);
+}
+
+.memberBio {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bioText {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.note {
+  margin-top: 80px;
+  padding: 48px 64px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.noteText {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  color: var(--pure-black);
+  opacity: 0.7;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 96px 0;
+  }
+
+  .container {
+    padding: 0 48px;
+  }
+
+  .title {
+    font-size: 48px;
+    margin-bottom: 64px;
+  }
+
+  .memberCard {
+    padding: 48px;
+  }
+
+  .memberName {
+    font-size: 28px;
+  }
+
+  .memberTitle {
+    font-size: 18px;
+  }
+
+  .bioText {
+    font-size: 17px;
+  }
+
+  .note {
+    margin-top: 64px;
+    padding: 40px 48px;
+  }
+
+  .noteText {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 48px;
+  }
+
+  .membersGrid {
+    gap: 48px;
+  }
+
+  .memberCard {
+    padding: 32px;
+    gap: 24px;
+  }
+
+  .memberHeader {
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+
+  .memberName {
+    font-size: 24px;
+  }
+
+  .memberTitle {
+    font-size: 16px;
+  }
+
+  .socialLinks {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .socialLink {
+    width: 44px;
+    height: 44px;
+  }
+
+  .memberBio {
+    gap: 20px;
+  }
+
+  .bioText {
+    font-size: 16px;
+  }
+}
+

@@ -147,7 +147,7 @@ export const Features: React.FC = () => {
       <div ref={containerRef} className={styles.container}>
         <div className={styles.innerContainer}>
           <div ref={headlineRef} className={styles.headline}>
-            <h2>STIAMO RIVOLUZIONANDO<br />IL MODO DI FARE<br />UN BUON LAVORO.</h2>
+            <h2>STIAMO RIVOLUZIONANDO<br />IL MODO DI FARE<br />RISTORAZIONE.</h2>
           </div>
 
           <div ref={featuresGridRef} className={styles.featuresGrid}>

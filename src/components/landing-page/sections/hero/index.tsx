@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 ref={titleRef} className={styles.title}>
-            L&apos;AI che trasforma la tua ristorazione in un business più intelligente
+            L&apos;AI che trasforma la ristorazione in un business più intelligente
           </h1>
 
           <p ref={subtitleRef} className={styles.subtitle}>

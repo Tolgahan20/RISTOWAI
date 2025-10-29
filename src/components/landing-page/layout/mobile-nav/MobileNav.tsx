@@ -1,8 +1,9 @@
-'use client';
+  'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { ArrowUpRight, X } from 'react-feather';
 import styles from './mobile-nav.module.css';
 import { UrlObject } from 'url';
@@ -19,6 +20,7 @@ const navItems = [
 export const MobileNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<'default' | 'dark' | 'white'>('default');
+  const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const rafRef = useRef<number>(null);
   const lastScrollTime = useRef<number>(0);
@@ -149,18 +151,23 @@ export const MobileNav: React.FC = () => {
             </div>
 
             <ul className={styles.navList}>
-              {navItems.map((item) => (
-                <li key={item.label} className={styles.navItem}>
-                  <Link
-                    href={item.href as unknown as UrlObject}
-                    className={styles.navLink}
-                    onClick={toggleMenu}
-                  >
-                    {item.label}
-                    <ArrowUpRight size={24} />
-                  </Link>
-                </li>
-              ))}
+              {navItems.map((item) => {
+                // If we're not on the homepage, prepend "/" to the href
+                const isHomepage = pathname === '/';
+                const href = isHomepage ? item.href : `/${item.href}`;
+                return (
+                  <li key={item.label} className={styles.navItem}>
+                    <Link
+                      href={href as unknown as UrlObject}
+                      className={styles.navLink}
+                      onClick={toggleMenu}
+                    >
+                      {item.label}
+                      <ArrowUpRight size={24} />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

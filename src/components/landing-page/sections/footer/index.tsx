@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Linkedin, Twitter, Youtube } from 'react-feather';
+import { Linkedin, Instagram } from 'react-feather';
 import styles from './footer.module.css';
 import { UrlObject } from 'url';
 
@@ -68,14 +68,11 @@ export const Footer = () => {
             © {new Date().getFullYear()} Ristowai. All rights reserved.
           </p>
           <div className={styles.socialLinks}>
-            <Link href={"https://linkedin.com" as unknown as UrlObject} className={styles.socialLink} target="_blank">
+            <Link href={"https://www.linkedin.com/company/ristowai/" as unknown as UrlObject} className={styles.socialLink} target="_blank">
               <Linkedin size={20} />
             </Link>
-            <Link href={"https://twitter.com" as unknown as UrlObject} className={styles.socialLink} target="_blank">
-              <Twitter size={20} />
-            </Link>
-            <Link href={"https://youtube.com" as unknown as UrlObject} className={styles.socialLink} target="_blank">
-              <Youtube size={20} />
+            <Link href={"https://www.instagram.com/ristowai/" as unknown as UrlObject} className={styles.socialLink} target="_blank">
+              <Instagram size={20} />
             </Link>
           </div>
         </div>
