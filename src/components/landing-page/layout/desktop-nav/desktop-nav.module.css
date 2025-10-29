@@ -1,0 +1,174 @@
+@import '../../landing-globals.css';
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  z-index: var(--z-nav);
+  background-color: var(--background-gray);
+  padding: var(--spacing-xs) 0;
+  transition: all var(--transition-normal);
+}
+
+.nav.darkMode {
+  background-color: var(--pure-black);
+}
+
+.nav.whiteMode {
+  background-color: var(--pure-white);
+}
+
+.container {
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--spacing-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+}
+
+.navListContainer {
+  background-color: var(--pure-white);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.darkMode .navListContainer {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.whiteMode .navListContainer {
+  background-color: var(--background-gray);
+  box-shadow: none;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-xl);
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: color var(--transition-normal);
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.darkMode .navLink {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.navList:hover .navLink {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.darkMode .navList:hover .navLink {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.navLink:hover {
+  color: var(--pure-black) !important;
+}
+
+.darkMode .navLink:hover {
+  color: var(--pure-white) !important;
+}
+
+.demoButton {
+  background-color: var(--pure-black);
+  color: var(--pure-white);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  position: relative;
+  height: 40px;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+.darkMode .demoButton {
+  background-color: var(--primary-green);
+}
+
+.demoButtonInner {
+  position: relative;
+  overflow: hidden;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.demoButtonText {
+  display: block;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.demoButtonText::after {
+  content: 'Beta Test';
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.demoButton:hover .demoButtonText {
+  transform: translateY(-100%);
+}
+
+.demoButton svg {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-normal);
+}
+
+.demoButton:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .navListContainer,
+  .demoButton {
+    display: none;
+  }
+}

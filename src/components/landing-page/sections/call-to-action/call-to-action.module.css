@@ -1,0 +1,229 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.container {
+  background-color: var(--pure-white);
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  transform-origin: center top;
+  will-change: width;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  transition: width var(--transition-normal);
+  z-index: 1;
+}
+
+.container.expanded {
+  width: 100%;
+
+}
+
+.innerContainer {
+
+  width: 100%;
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  padding: 96px;
+  cursor: pointer;
+  background-color: var(--pure-white);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+
+.panel:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.panel::before,
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary-green);
+  transform-origin: center;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0);
+}
+
+.panel::before {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform-origin: left top;
+}
+
+.panel::after {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transform-origin: right bottom;
+}
+
+.panel:hover::before,
+.panel:hover::after {
+  transform: scale(1);
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--pure-black);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--pure-black);
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-bottom: 32px;
+}
+
+.iconWrapper {
+  position: absolute;
+  top: 96px;
+  right: 96px;
+  width: 64px;
+  height: 48px;
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+  background: var(--pure-white);
+}
+
+.iconInner {
+  position: relative;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.icon {
+  color: var(--pure-black);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon:first-child {
+  opacity: 1;
+}
+
+.icon:last-child {
+  transform: translate(-75%, -25%);
+  opacity: 0;
+}
+
+.panel:hover .icon:first-child {
+  transform: translate(-25%, -75%);
+  opacity: 0;
+}
+
+.panel:hover .icon:last-child {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 48px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .panel {
+    padding: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+  }
+
+  .container {
+    min-height: auto;
+  }
+
+  .innerContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: none;
+  }
+
+  .panel {
+    padding: 20px 12px !important;
+    min-height: auto !important;
+    height: auto !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+  }
+
+  .panel:first-child {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .panel:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .title {
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+    line-height: 1.1;
+  }
+
+  .description {
+    font-size: 12px !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 16px !important;
+    line-height: 1.4;
+  }
+
+  .iconWrapper {
+    position: static !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: auto;
+  }
+}

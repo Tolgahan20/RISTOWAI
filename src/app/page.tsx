@@ -1,66 +1,105 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { Hero } from "@/components/landing-page/sections/hero";
+import { Features } from "@/components/landing-page/sections/features";
+import { MarketStats } from "@/components/landing-page/sections/market-stats";
+import { HowItWorks } from "@/components/landing-page/sections/how-it-works";
+import { Pricing } from "@/components/landing-page/sections/pricing";
+import { WaitingList } from "@/components/landing-page/sections/waiting-list";
+import { FAQ } from "@/components/landing-page/sections/faq";
+import { CallToAction } from "@/components/landing-page/sections/call-to-action";
+import { Footer } from "@/components/landing-page/sections/footer";
+import { DesktopNav, MobileNav } from "@/components/landing-page/layout";
+import { SmoothScroll } from "@/components/landing-page/providers/SmoothScroll";
+import gsap from "gsap";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const content = contentRef.current;
+    const reveal = revealRef.current;
+
+    if (!content || !reveal) return;
+
+    // Initial state
+    gsap.set(content, {
+      visibility: "visible",
+      opacity: 0,
+    });
+
+    // Create the reveal animation
+    const tl = gsap.timeline({
+      defaults: { duration: 1.2, ease: "power4.inOut" },
+      onComplete: () => reveal.remove(),
+    });
+
+    tl.to(
+      `.${styles.revealLeft}`,
+      {
+        xPercent: -100,
+        yPercent: -100,
+      },
+      0
+    )
+      .to(
+        `.${styles.revealRight}`,
+        {
+          xPercent: 100,
+          yPercent: 100,
+        },
+        0
+      )
+      .to(
+        content,
+        {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.6"
+      );
+
+    // Clean up
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <div ref={revealRef} className={styles.pageReveal}>
+        <div className={styles.revealLeft}></div>
+        <div className={styles.revealRight}></div>
+      </div>
+      <div className="nav-fixed">
+        <DesktopNav />
+        <MobileNav />
+      </div>
+      <SmoothScroll>
+        <div ref={contentRef} className={styles.pageContent}>
+          <main className={styles.main}>
+            <Hero />
+            <Features />
+            <div className={styles.marketStats}>
+              <MarketStats />
+            </div>
+            <HowItWorks />
+            <Pricing />
+            <div className={styles.waitingList}>
+              <WaitingList />
+            </div>
+            <div className={styles.marketStats}>
+              <FAQ />
+            </div>
+            <CallToAction />
+          </main>
+          <Footer />
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </SmoothScroll>
+    </>
   );
 }

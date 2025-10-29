@@ -1,0 +1,147 @@
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.container {
+  background-color: var(--pure-white);
+  width: 90%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 64px 64px 0 0;
+  transform-origin: center top;
+  will-change: width;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  transition: width var(--transition-normal);
+  z-index: 1;
+}
+
+.container.expanded {
+  width: 100%;
+  border-radius: 64px 64px 0 0;
+}
+
+.innerContainer {
+  padding: 128px 24px;
+  width: 100%;
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 80px;
+  letter-spacing: -0.02em;
+}
+
+.faqGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  opacity: 0;
+  transform: translateY(30px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 24px;
+}
+
+.questionButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.question {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--pure-black);
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.questionButton:hover .question {
+  color: var(--primary-green);
+}
+
+.icon {
+  color: var(--pure-black);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.icon.expanded {
+  transform: rotate(180deg);
+}
+
+.answerWrapper {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.answerWrapper.expanded {
+  height: auto;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+.answer {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--pure-black);
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 48px;
+    margin-bottom: 64px;
+  }
+
+  .faqGrid {
+    gap: 32px;
+  }
+
+  .question {
+    font-size: 20px;
+  }
+
+  .answer {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 40px;
+    margin-bottom: 48px;
+  }
+
+  .faqGrid {
+    gap: 24px;
+  }
+}

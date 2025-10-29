@@ -1,0 +1,104 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--pure-black);
+  color: var(--pure-white);
+  transition: all 0.2s ease;
+  height: 44px;
+}
+
+.primary {
+  background-color: var(--pure-black);
+  color: var(--pure-white);
+}
+
+.primary:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.secondary {
+  background-color: var(--pure-white);
+  color: var(--pure-black);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.secondary:hover {
+  background-color: var(--light-gray);
+}
+
+.large {
+  padding: 14px 28px;
+  font-size: 18px;
+  height: 52px;
+}
+
+.small {
+  padding: 8px 16px;
+  font-size: 14px;
+  height: 36px;
+}
+
+/* Icon styles */
+.button svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.large svg {
+  width: 24px;
+  height: 24px;
+}
+
+.small svg {
+  width: 16px;
+  height: 16px;
+}
+
+.iconLeft svg {
+  margin-right: 8px;
+}
+
+.iconRight svg {
+  margin-left: 8px;
+}
+
+/* Text slide animation */
+.buttonInner {
+  position: relative;
+  overflow: hidden;
+  height: 20px;
+}
+
+.buttonText {
+  display: block;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.buttonText::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+}
+
+.button:hover .buttonText {
+  transform: translateY(-100%);
+}
+
+/* Icon animation */
+.button:hover svg {
+  transform: translateX(2px);
+}
