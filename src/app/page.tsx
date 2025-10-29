@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Hero } from "@/components/landing-page/sections/hero";
 import { Features } from "@/components/landing-page/sections/features";
 import { MarketStats } from "@/components/landing-page/sections/market-stats";
@@ -18,6 +18,7 @@ import styles from "./page.module.css";
 export default function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
+  const [showReveal, setShowReveal] = useState(true);
 
   useEffect(() => {
     const content = contentRef.current;
@@ -34,7 +35,7 @@ export default function Home() {
     // Create the reveal animation
     const tl = gsap.timeline({
       defaults: { duration: 1.2, ease: "power4.inOut" },
-      onComplete: () => reveal.remove(),
+      onComplete: () => setShowReveal(false),
     });
 
     tl.to(
@@ -71,10 +72,12 @@ export default function Home() {
 
   return (
     <>
-      <div ref={revealRef} className={styles.pageReveal}>
-        <div className={styles.revealLeft}></div>
-        <div className={styles.revealRight}></div>
-      </div>
+      {showReveal && (
+        <div ref={revealRef} className={styles.pageReveal}>
+          <div className={styles.revealLeft}></div>
+          <div className={styles.revealRight}></div>
+        </div>
+      )}
       <div className="nav-fixed">
         <DesktopNav />
         <MobileNav />

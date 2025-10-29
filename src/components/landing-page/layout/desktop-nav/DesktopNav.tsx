@@ -63,7 +63,7 @@ export const DesktopNav: React.FC = () => {
         .find(({ top }) => navRect.bottom >= (top + 10));
 
       if (currentSection) {
-        console.log('Current section:', currentSection.type);
+
         if (currentSection.type === 'features' || currentSection.type === 'dark') {
           newMode = 'dark';
         } else if (currentSection.type === 'white') {

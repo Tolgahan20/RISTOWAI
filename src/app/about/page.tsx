@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Hero } from "@/components/about-page/sections/hero";
 import { Vision } from "@/components/about-page/sections/vision";
@@ -13,6 +13,7 @@ import Footer from "@/components/landing-page/sections/footer";
 export default function AboutPage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
+  const [showReveal, setShowReveal] = useState(true);
 
   useEffect(() => {
     const content = contentRef.current;
@@ -29,7 +30,7 @@ export default function AboutPage() {
     // Create the reveal animation
     const tl = gsap.timeline({
       defaults: { duration: 1.2, ease: "power4.inOut" },
-      onComplete: () => reveal.remove(),
+      onComplete: () => setShowReveal(false),
     });
 
     tl.to(
@@ -66,10 +67,12 @@ export default function AboutPage() {
 
   return (
     <>
-      <div ref={revealRef} className={styles.pageReveal}>
-        <div className={styles.revealLeft}></div>
-        <div className={styles.revealRight}></div>
-      </div>
+      {showReveal && (
+        <div ref={revealRef} className={styles.pageReveal}>
+          <div className={styles.revealLeft}></div>
+          <div className={styles.revealRight}></div>
+        </div>
+      )}
       <div className="nav-fixed">
         <DesktopNav />
         <MobileNav />

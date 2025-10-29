@@ -3,17 +3,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Linkedin, Instagram } from 'react-feather';
+import { usePathname } from 'next/navigation';
 import styles from './footer.module.css';
 import { UrlObject } from 'url';
 
 export const Footer = () => {
-  const renderLink = (href: string, text: string) => (
-    <div className={styles.linkWrapper}>
-      <Link href={href as unknown as UrlObject} className={styles.link} data-text={text}>
-        {text}
-      </Link>
-    </div>
-  );
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
+
+  const renderLink = (href: string, text: string, isSection = false) => {
+    // For section links, adjust based on current page
+    const finalHref = isSection && !isHomepage ? `/${href}` : href;
+    
+    return (
+      <div className={styles.linkWrapper}>
+        <Link href={finalHref as unknown as UrlObject} className={styles.link} data-text={text}>
+          {text}
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <footer className={styles.footer}>
@@ -35,12 +44,12 @@ export const Footer = () => {
           <div className={styles.linkGroup}>
             <h3 className={styles.groupTitle}>Link Rapidi</h3>
             <div className={styles.linkList}>
-              {renderLink('/solutions', 'Soluzioni')}
-              {renderLink('/market', 'Mercato Attuale')}
-              {renderLink('/how-it-works', 'Come funziona')}
-              {renderLink('/pricing', 'Prezzi')}
-              {renderLink('/waiting-list', 'Lista d\'attesa')}
-              {renderLink('/faq', 'FAQ')}
+              {renderLink('#features', 'Soluzioni', true)}
+              {renderLink('#market-stats', 'Mercato Attuale', true)}
+              {renderLink('#how-it-works', 'Come funziona', true)}
+              {renderLink('#pricing', 'Prezzi', true)}
+              {renderLink('#waiting-list', 'Lista d\'attesa', true)}
+              {renderLink('#faq', 'FAQ', true)}
             </div>
           </div>
 
@@ -49,7 +58,7 @@ export const Footer = () => {
             <div className={styles.linkList}>
               {renderLink('/about', 'Chi Siamo')}
               {renderLink('/contact', 'Contatti')}
-              {renderLink('/beta', 'Programma Beta Test')}
+              {renderLink('/beta-test', 'Programma Beta Test')}
             </div>
           </div>
 

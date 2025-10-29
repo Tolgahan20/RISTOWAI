@@ -69,7 +69,7 @@ export const Team: React.FC = () => {
     });
 
     // Animate members
-    memberRefs.current.forEach((member, index) => {
+    memberRefs.current.forEach((member) => {
       if (member) {
         gsap.from(member, {
           opacity: 0,
