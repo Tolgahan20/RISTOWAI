@@ -1,0 +1,55 @@
+@import '../../components/landing-page/landing-globals.css';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.welcome {
+  font-size: 16px;
+  color: #666;
+  margin: 0 0 var(--spacing-3xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.card {
+  background: var(--pure-white);
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  padding: var(--spacing-2xl);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--pure-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--pure-black);
+  margin: 0;
+}

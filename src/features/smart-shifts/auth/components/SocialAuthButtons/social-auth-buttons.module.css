@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.socialButton {
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000000;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.socialButton:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.socialButton:active {
+  transform: translateY(0);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.buttonText {
+  flex: 1;
+  text-align: center;
+  margin-right: 32px; /* Balance the icon on the left */
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dividerText {
+  font-size: 13px;
+  color: #000000;
+  opacity: 0.4;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin-bottom: 28px;
+  }
+
+  .socialButton {
+    padding: 12px 14px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .buttonText {
+    margin-right: 28px;
+  }
+
+  .divider {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+
+  .dividerText {
+    font-size: 12px;
+  }
+}
+

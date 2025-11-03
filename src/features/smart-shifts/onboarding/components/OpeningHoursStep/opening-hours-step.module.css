@@ -1,0 +1,313 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 3rem 1rem 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 0.375rem 0;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Presets Section */
+.presets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.presetButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+}
+
+.presetButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: var(--color-bg-secondary);
+  border: .5px solid var(--pure-black);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.presetButton:hover {
+  border-color: var(--color-primary);
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.presetIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: var(--color-primary);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.presetIcon svg {
+  color: white !important;
+  stroke: white !important;
+  fill: none !important;
+  stroke-width: 2.5 !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.presetText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.presetName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.presetDesc {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* Days Section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dayRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+
+.dayRow:first-child {
+  border-top: 1px solid var(--color-border);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dayRow:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.dayRow:has(input[type="checkbox"]:checked) {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+}
+
+.dayToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dayToggle input[type="checkbox"] {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  cursor: pointer;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2.5px solid var(--color-border);
+  border-radius: 5px;
+  background: white;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.dayToggle input[type="checkbox"]:checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.dayToggle input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.dayToggle input[type="checkbox"]:hover {
+  border-color: var(--color-primary);
+}
+
+.dayLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  user-select: none;
+}
+
+.dayTimes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  margin-left: 1.875rem;
+  background: var(--color-bg-secondary);
+  border-radius: 6px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.timeGroup {
+  display: grid;
+  grid-template-columns: 60px 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.timeLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.timeGroup input[type="time"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.timeGroup input[type="time"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
+}
+
+.timeSeparator {
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.375rem;
+  }
+
+  .presetButtons {
+    grid-template-columns: 1fr;
+  }
+
+  .dayTimes {
+    margin-left: 0;
+    padding: 0.75rem;
+  }
+
+  .timeGroup {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.5rem;
+  }
+
+  .timeLabel {
+    grid-column: 1 / -1;
+    font-size: 0.75rem;
+  }
+
+  .timeSeparator {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+    border-radius: 8px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .presetName {
+    font-size: 0.8rem;
+  }
+
+  .presetDesc {
+    font-size: 0.7rem;
+  }
+}

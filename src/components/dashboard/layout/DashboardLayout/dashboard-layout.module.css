@@ -1,0 +1,34 @@
+@import '../../../landing-page/landing-globals.css';
+
+.container {
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+
+.content {
+  display: flex;
+  padding-top: 64px; /* Height of navbar */
+}
+
+.main {
+  flex: 1;
+  margin-left: 240px; /* Width of sidebar */
+  padding: var(--spacing-2xl);
+  transition: margin-left 0.3s ease;
+}
+
+.mainExpanded {
+  margin-left: 64px; /* Width of collapsed sidebar */
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+    padding: var(--spacing-lg);
+  }
+  
+  .mainExpanded {
+    margin-left: 0;
+  }
+}
+

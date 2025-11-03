@@ -45,3 +45,13 @@ export const revokeToken = async (refreshToken: string): Promise<SuccessResponse
   const response = await axiosInstance.post(api.auth.tokens.revoke, { refreshToken });
   return response.data;
 };
+
+export const revokeAllTokens = async (): Promise<SuccessResponse> => {
+  const response = await axiosInstance.post(api.auth.tokens.revokeAll);
+  return response.data;
+};
+
+export const firebaseLogin = async (data: { idToken: string; provider: 'google' | 'facebook' }): Promise<AuthResponse> => {
+  const response = await axiosInstance.post(`${api.auth.base}/firebase/login`, data);
+  return response.data;
+};

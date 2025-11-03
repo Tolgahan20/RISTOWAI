@@ -1,0 +1,244 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+}
+
+.card {
+  background: var(--pure-white);
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: var(--spacing-4xl);
+  max-width: 720px;
+  width: 100%;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-md);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 var(--spacing-3xl);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Presets */
+.presets {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.presetsLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.presetButtons {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.presetButton {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--pure-black);
+  background: #F5F5F5;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.presetButton:hover {
+  background: var(--pure-black);
+  color: var(--pure-white);
+  border-color: var(--pure-black);
+}
+
+/* Add Phase Section */
+.addPhaseSection {
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-lg);
+  background: #FAFAFA;
+  border-radius: 12px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr auto;
+  gap: var(--spacing-sm);
+  align-items: start;
+}
+
+.addButton {
+  padding: 14px;
+  background: var(--pure-black);
+  color: var(--pure-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #333;
+}
+
+.addButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Phases List */
+.phasesList {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.phasesLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 var(--spacing-md);
+}
+
+.phasesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.phaseCard {
+  padding: var(--spacing-lg);
+  background: #FAFAFA;
+  border: 1px solid #E5E5E5;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.phaseCard:hover {
+  border-color: #D0D0D0;
+}
+
+.phaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+}
+
+.phaseName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.phaseType {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.phaseType.hard {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.phaseType.soft {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.phaseTime {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 14px;
+  color: #666;
+  margin-bottom: var(--spacing-md);
+}
+
+.phaseTime svg {
+  color: #999;
+}
+
+.removeButton {
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #EF4444;
+  background: transparent;
+  border: 1px solid #FEE2E2;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.removeButton:hover {
+  background: #FEE2E2;
+}
+
+.error {
+  font-size: 13px;
+  color: #EF4444;
+  text-align: center;
+  margin-top: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+
+  .card {
+    padding: var(--spacing-2xl);
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .addButton {
+    width: 100%;
+  }
+
+  .phasesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

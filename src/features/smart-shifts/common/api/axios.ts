@@ -35,17 +35,29 @@ axiosInstance.interceptors.response.use(
       try {
         const refreshToken = tokenService.getRefreshToken();
         if (!refreshToken) {
-          throw new Error('No refresh token available');
+          // No refresh token, redirect to login
+          tokenService.removeTokens();
+          if (typeof window !== 'undefined') {
+            window.location.href = '/login';
+          }
+          return Promise.reject(new Error('No refresh token available'));
         }
 
         const response = await axios.post(api.auth.tokens.refresh, { refreshToken });
+        
+        // Update tokens with the new ones
         tokenService.setTokens(response.data.accessToken, response.data.refreshToken);
 
+        // Retry original request with new access token
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
+        console.error('Token refresh failed:', refreshError);
+        // Clear tokens and redirect to login
         tokenService.removeTokens();
-        // Handle refresh token failure (redirect to login, etc.)
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
         return Promise.reject(refreshError);
       }
     }

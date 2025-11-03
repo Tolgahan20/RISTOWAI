@@ -1,0 +1,24 @@
+@import '../../../landing-page/landing-globals.css';
+
+.card {
+  background: var(--pure-white);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.none {
+  padding: 0;
+}
+
+.small {
+  padding: var(--spacing-xl);
+}
+
+.medium {
+  padding: var(--spacing-3xl);
+}
+
+.large {
+  padding: var(--spacing-4xl);
+}
+

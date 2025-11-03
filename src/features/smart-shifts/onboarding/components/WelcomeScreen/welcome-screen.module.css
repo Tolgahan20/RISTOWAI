@@ -1,0 +1,224 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+}
+
+.content {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.logoWrapper {
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-md);
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+  margin: 0 auto var(--spacing-3xl);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Options Grid */
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.optionCard {
+  position: relative;
+  background: var(--pure-white);
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.optionCard.active:hover {
+  border-color: var(--pure-black);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.optionCard.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.badge {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.recommended {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background: var(--pure-black);
+  color: var(--pure-white);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  background: #F5F5F5;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--pure-black);
+}
+
+.optionCard.disabled .cardIcon {
+  background: #FAFAFA;
+  color: #999;
+}
+
+.cardTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.cardDescription {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-lg);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 13px;
+  color: #444;
+}
+
+.feature svg {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
+.optionCard.disabled .feature svg {
+  color: #D1D5DB;
+}
+
+.cardButton {
+  width: 100%;
+  padding: 12px var(--spacing-lg);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--pure-white);
+  background: var(--pure-black);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.optionCard.active .cardButton:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.optionCard.disabled .cardButton {
+  background: #E5E5E5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.bottomText {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: 36px;
+  }
+  
+  .description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .optionCard {
+    padding: var(--spacing-2xl);
+  }
+  
+  .cardTitle {
+    font-size: 20px;
+  }
+}
+

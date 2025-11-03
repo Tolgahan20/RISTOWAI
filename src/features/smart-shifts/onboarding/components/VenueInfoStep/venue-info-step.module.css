@@ -1,0 +1,71 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+}
+
+.card {
+  background: var(--pure-white);
+  border: 2px solid #E5E5E5;
+  border-radius: 16px;
+  padding: var(--spacing-4xl);
+  max-width: 520px;
+  width: 100%;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-md);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 var(--spacing-3xl);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+
+  .card {
+    padding: var(--spacing-2xl);
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
