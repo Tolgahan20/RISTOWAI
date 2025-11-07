@@ -1,0 +1,60 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.required {
+  color: #DC2626;
+  margin-left: 2px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--pure-black);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.input:disabled {
+  background-color: #F3F4F6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.inputError {
+  border-color: #DC2626;
+}
+
+.inputError:focus {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.selectError {
+  border-color: #DC2626 !important;
+}
+
+.error {
+  font-size: var(--font-size-xs);
+  color: #DC2626;
+  margin-top: 2px;
+}
+

@@ -1,0 +1,73 @@
+@import '../components/landing-page/landing-globals.css';
+
+/* Standard page container */
+.page {
+  min-height: calc(100vh - 80px);
+  background-color: #F9FAFB;
+  padding: var(--spacing-2xl);
+}
+
+/* Content wrapper with max-width */
+.pageContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* Empty state containers */
+.fullPageEmpty {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerEmpty {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* View toggle (for pages with multiple views like Staff) */
+.viewToggle {
+  display: flex;
+  gap: 4px;
+  background-color: #F3F4F6;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .page {
+    padding: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: var(--spacing-lg);
+  }
+  
+  .pageContent {
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: var(--spacing-md);
+  }
+}
+

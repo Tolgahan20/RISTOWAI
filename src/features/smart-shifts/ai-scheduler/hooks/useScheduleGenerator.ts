@@ -9,6 +9,8 @@ import type {
   ScheduleResponse,
   PublishScheduleRequest,
   ShiftToPublish,
+  ScheduleMode,
+  GenerateScheduleRequest,
 } from '../types';
 
 interface UseScheduleGeneratorProps {
@@ -90,6 +92,40 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
     setShowResults(false);
   };
 
+  // New handler for wizard-based submission
+  const handleSubmitWithData = (data: {
+    dateRange: { startDate: string; endDate: string };
+    mode: ScheduleMode;
+    staffIds?: string[];
+    phaseIds?: string[];
+    phaseOverrides?: Array<{ phaseId: string; requiredStaff: number }>;
+  }) => {
+    // Build request with all wizard data
+    const request: GenerateScheduleRequest = {
+      venueId,
+      dateRange: data.dateRange,
+      mode: data.mode,
+      manualSeeds: undefined,
+    };
+
+    // Only include staffIds if user selected specific staff
+    if (data.staffIds && data.staffIds.length > 0) {
+      request.staffIds = data.staffIds;
+    }
+
+    // Only include phaseIds if user selected specific phases
+    if (data.phaseIds && data.phaseIds.length > 0) {
+      request.phaseIds = data.phaseIds;
+    }
+
+    // Include phase overrides if any were set
+    if (data.phaseOverrides && data.phaseOverrides.length > 0) {
+      request.phaseOverrides = data.phaseOverrides;
+    }
+
+    startJob(request);
+  };
+
   return {
     // State
     showResults,
@@ -106,6 +142,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
     updateDateRange,
     updateMode,
     handleSubmit,
+    handleSubmitWithData,
     handlePublish,
     handleBack,
   };

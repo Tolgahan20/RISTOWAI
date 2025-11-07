@@ -1,0 +1,147 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.hint {
+  font-size: var(--font-size-xs);
+  color: #6B7280;
+  margin: 0;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.dayButton {
+  padding: var(--spacing-sm);
+  background-color: #F3F4F6;
+  border: 2px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dayButton:hover {
+  background-color: #E5E7EB;
+}
+
+.dayActive {
+  background-color: var(--pure-black);
+  border-color: var(--pure-black);
+  color: var(--pure-white);
+}
+
+.dayActive:hover {
+  background-color: #374151;
+}
+
+.requirements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.requirement {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  color: #DC2626;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.removeButton:hover {
+  background-color: #FEE2E2;
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--pure-black);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid #E5E5E5;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .requirement {
+    grid-template-columns: 1fr;
+  }
+
+  .daysGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+

@@ -1,10 +1,11 @@
 .hero {
   width: 100%;
   min-height: 100vh;
-  padding: 80px 50px;
+  padding: 40px 50px 60px;
   margin-bottom: 100px;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: var(--background-gray);
   overflow: hidden;
   position: relative;
@@ -12,146 +13,89 @@
 
 .container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--spacing-3xl);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
 }
 
 .content {
-  max-width: 800px;
+  width: 100%;
+  max-width: 900px;
   position: relative;
-  padding-right: var(--spacing-3xl);
   will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  font-size: clamp(3.5rem, 7vw, 5rem);
+  font-size: clamp(3.5rem, 7vw, 6rem);
   line-height: 1.1;
   font-weight: 900;
   letter-spacing: -0.02em;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-2xl);
   color: var(--pure-black);
   will-change: transform, opacity;
+  text-align: center;
 }
 
 .subtitle {
   margin-bottom: var(--spacing-2xl);
-  max-width: 600px;
+  max-width: 700px;
   position: relative;
   z-index: 1;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.6;
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  line-height: 1.7;
   opacity: 0.8;
   will-change: transform, opacity;
-}
-
-.imageWrapper {
-  position: absolute;
-  right: -40%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 85%;
-  height: 110vh;
-  pointer-events: none;
-  will-change: transform, opacity;
-  z-index: 0;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left center;
-}
-
-@media (max-width: 1440px) {
-  .imageWrapper {
-    right: -45%;
-    width: 95%;
-  }
-}
-
-@media (max-width: 1280px) {
-  .imageWrapper {
-    right: -50%;
-    width: 100%;
-  }
-
-  .title {
-    font-size: clamp(3rem, 6vw, 4rem);
-  }
+  text-align: center;
 }
 
 @media (max-width: 1024px) {
-  .container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
-  }
-
-  .content {
-    max-width: 100%;
-    text-align: center;
-    padding-right: 0;
+  .hero {
+    padding: 40px 40px 60px;
   }
 
   .title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    text-align: center;
-  }
-
-  .subtitle {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .imageWrapper {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
-    height: 60vh;
-    max-height: 500px;
-    order: -1;
+    font-size: clamp(3rem, 6vw, 4.5rem);
     margin-bottom: var(--spacing-xl);
   }
 
-  .image {
-    object-position: center;
-    object-fit: contain;
+  .subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    margin-bottom: var(--spacing-xl);
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 60px 24px;
-    min-height: 80vh;
+    padding: 30px 24px 50px;
+    min-height: 90vh;
   }
 
   .container {
-    grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
   .content {
-    text-align: center;
+    max-width: 100%;
   }
 
   .title {
-    font-size: clamp(2rem, 8vw, 2.5rem);
+    font-size: clamp(2.25rem, 8vw, 3rem);
     margin-bottom: var(--spacing-xl);
+    letter-spacing: -0.01em;
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
     margin-bottom: var(--spacing-xl);
-  }
-
-  .imageWrapper {
-    display: none;
+    max-width: 100%;
   }
 }

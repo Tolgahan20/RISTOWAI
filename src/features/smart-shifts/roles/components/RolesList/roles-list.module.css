@@ -1,0 +1,146 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.headerLeft {
+  flex: 1;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 4px 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: #6B7280;
+  margin: 0;
+}
+
+.headerRight {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Table Cell Content */
+.nameCell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 500;
+}
+
+.systemBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background-color: #F3F4F6;
+  color: #6B7280;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.descriptionCell {
+  color: #6B7280;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typeSystem {
+  display: inline-flex;
+  padding: 4px 12px;
+  background-color: #DBEAFE;
+  color: #1E40AF;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.typeCustom {
+  display: inline-flex;
+  padding: 4px 12px;
+  background-color: #E0E7FF;
+  color: #4338CA;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusActive {
+  display: inline-flex;
+  padding: 4px 12px;
+  background-color: #D1FAE5;
+  color: #065F46;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusInactive {
+  display: inline-flex;
+  padding: 4px 12px;
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.editButton,
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  background-color: var(--pure-white);
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editButton:not(:disabled):hover {
+  border-color: var(--pure-black);
+  color: var(--pure-black);
+  background-color: #F9FAFB;
+}
+
+.deleteButton:not(:disabled):hover {
+  border-color: #DC2626;
+  color: #DC2626;
+  background-color: #FEE2E2;
+}
+
+.editButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

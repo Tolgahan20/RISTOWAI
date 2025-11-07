@@ -1,0 +1,336 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.headerContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  white-space: nowrap;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: #6B7280;
+  margin: 0;
+}
+
+.filtersPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--pure-white);
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+}
+
+.filtersRow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-lg);
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 150px;
+}
+
+.filterLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--pure-black);
+}
+
+.clearButton {
+  white-space: nowrap;
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.jobCard {
+  padding: var(--spacing-lg);
+  background-color: var(--pure-white);
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: all 0.2s ease;
+}
+
+.jobCard:hover {
+  border-color: #D1D5DB;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.jobHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  background-color: #F3F4F6;
+  color: #6B7280;
+}
+
+.iconCompleted {
+  color: #10B981;
+}
+
+.iconFailed {
+  color: #EF4444;
+}
+
+.iconProcessing {
+  color: #3B82F6;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.iconPending {
+  color: #F59E0B;
+}
+
+.jobDate {
+  font-size: var(--font-size-sm);
+  color: #9CA3AF;
+}
+
+.jobDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: #F9FAFB;
+  border-radius: 8px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.detailLabel {
+  color: #6B7280;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.detailValue {
+  color: var(--pure-black);
+}
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background-color: #FEF2F2;
+  border: 1px solid #FEE2E2;
+  border-radius: 8px;
+}
+
+.errorLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #991B1B;
+}
+
+.errorText {
+  font-size: var(--font-size-sm);
+  color: #DC2626;
+}
+
+.jobFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.successMessage {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #D1FAE5;
+  color: #065F46;
+  border-radius: 6px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.viewButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  white-space: nowrap;
+}
+
+.emptyStateContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: var(--spacing-xl);
+}
+
+.emptyStateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+  padding: var(--spacing-3xl);
+  background-color: var(--pure-white);
+  border: 2px dashed #E5E5E5;
+  border-radius: 12px;
+}
+
+.emptyStateIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  color: var(--pure-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.emptyStateTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.emptyStateText {
+  font-size: var(--font-size-base);
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.emptyStateButton {
+  margin-top: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .jobHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detailLabel {
+    min-width: auto;
+  }
+
+  .filtersPanel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtersRow {
+    flex-direction: column;
+  }
+
+  .filterGroup {
+    min-width: auto;
+  }
+
+  .jobFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .viewButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .emptyStateContainer {
+    min-height: 300px;
+    padding: var(--spacing-lg);
+  }
+
+  .emptyStateCard {
+    padding: var(--spacing-2xl);
+  }
+
+  .emptyStateIcon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .emptyStateTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .emptyStateText {
+    font-size: var(--font-size-sm);
+  }
+}
+

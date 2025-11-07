@@ -1,0 +1,33 @@
+@import '../../../components/landing-page/landing-globals.css';
+.fullPageEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.createButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--pure-white);
+  background: var(--pure-black);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.createButton:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.createButton:active {
+  transform: translateY(0);
+}
+

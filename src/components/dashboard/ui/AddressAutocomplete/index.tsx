@@ -38,7 +38,9 @@ export function AddressAutocomplete({
 
     // Check if script is already loaded
     if (window.google?.maps?.places) {
-      setIsLoaded(true);
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 0);
       return;
     }
 

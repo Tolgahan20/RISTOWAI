@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { api } from '../../common/constants/api';
+
 const ACCESS_TOKEN_KEY = 'accessToken';
 const REFRESH_TOKEN_KEY = 'refreshToken';
 
@@ -26,5 +29,22 @@ export const tokenService = {
 
   isAuthenticated: (): boolean => {
     return !!tokenService.getAccessToken();
+  },
+
+  revokeToken: async (refreshToken: string): Promise<void> => {
+    try {
+      await axios.post(api.auth.tokens.revoke, { refreshToken });
+    } catch (error) {
+      console.error('Failed to revoke token:', error);
+      // Even if revoke fails, we should still remove local tokens
+    }
+  },
+
+  logout: async (): Promise<void> => {
+    const refreshToken = tokenService.getRefreshToken();
+    if (refreshToken) {
+      await tokenService.revokeToken(refreshToken);
+    }
+    tokenService.removeTokens();
   },
 };

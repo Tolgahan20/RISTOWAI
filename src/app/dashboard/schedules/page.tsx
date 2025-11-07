@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight, Calendar } from 'react-feather';
 import { Button, LoadingState, ErrorState, EmptyState } from '@/components/dashboard/ui';
+import { PageHeader } from '@/components/dashboard/layout';
 import { VenueSelector } from '@/features/smart-shifts/ai-scheduler/components/VenueSelector';
 import { WeeklyScheduleGrid } from '@/features/smart-shifts/schedules/components/WeeklyScheduleGrid';
 import { useVenueSelection } from '@/features/smart-shifts/ai-scheduler/hooks/useVenueSelection';
@@ -11,10 +12,10 @@ import { useWeeklySchedule } from '@/features/smart-shifts/schedules/hooks/useWe
 import { useWeekNavigation } from '@/features/smart-shifts/schedules/hooks/useWeekNavigation';
 import { SCHEDULES_MESSAGES } from '@/features/smart-shifts/common/constants/messages';
 import { useNotificationStore } from '@/features/smart-shifts/common/stores/notification';
+import pageLayout from '@/styles/page-layout.module.css';
 import styles from './schedules.module.css';
 
 export default function SchedulesPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { showNotification } = useNotificationStore();
   const {
@@ -79,63 +80,55 @@ export default function SchedulesPage() {
     );
   }
 
+  const weekSubtitle = weeklySchedule ? formatWeekDisplay() : undefined;
+
   return (
-    <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>{SCHEDULES_MESSAGES.title}</h1>
-          {weeklySchedule && (
-            <p className={styles.subtitle}>{formatWeekDisplay()}</p>
-          )}
-        </div>
+    <div className={pageLayout.pageContainer}>
+      <PageHeader
+        title={SCHEDULES_MESSAGES.title}
+        subtitle={weekSubtitle}
+        showVenueSelector={venues.length > 1}
+        venues={venues.map(v => ({ id: v.id, name: v.name, address: v.address }))}
+        selectedVenueId={selectedVenueId}
+        onVenueChange={setSelectedVenueId}
+        actions={
+          <Button
+            variant="secondary"
+            onClick={() => window.location.href = '/dashboard/schedules/list'}
+          >
+            <Calendar size={16} />
+            Tutti i Turni
+          </Button>
+        }
+      />
 
-        {/* Week Navigation */}
-        <div className={styles.navigation}>
-          <Button
-            variant="ghost"
-            onClick={goToPreviousWeek}
-            disabled={isLoadingSchedule}
-          >
-            <ChevronLeft size={20} />
-            {SCHEDULES_MESSAGES.navigation.previous}
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={goToCurrentWeek}
-            disabled={isLoadingSchedule}
-          >
-            <Calendar size={18} />
-            {SCHEDULES_MESSAGES.navigation.today}
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={goToNextWeek}
-            disabled={isLoadingSchedule}
-          >
-            {SCHEDULES_MESSAGES.navigation.next}
-            <ChevronRight size={20} />
-          </Button>
-        </div>
+      {/* Week Navigation */}
+      <div className={styles.navigation}>
+        <Button
+          variant="ghost"
+          onClick={goToPreviousWeek}
+          disabled={isLoadingSchedule}
+        >
+          <ChevronLeft size={20} />
+          {SCHEDULES_MESSAGES.navigation.previous}
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={goToCurrentWeek}
+          disabled={isLoadingSchedule}
+        >
+          <Calendar size={18} />
+          {SCHEDULES_MESSAGES.navigation.today}
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={goToNextWeek}
+          disabled={isLoadingSchedule}
+        >
+          {SCHEDULES_MESSAGES.navigation.next}
+          <ChevronRight size={20} />
+        </Button>
       </div>
-
-      {/* Venue Selector (if multiple venues) */}
-      {venues.length > 1 && (
-        <div className={styles.venueSelector}>
-          <label>{SCHEDULES_MESSAGES.venue.label}</label>
-          <select
-            value={selectedVenueId}
-            onChange={(e) => setSelectedVenueId(e.target.value)}
-            className={styles.venueSelect}
-          >
-            {venues.map((venue) => (
-              <option key={venue.id} value={venue.id}>
-                {venue.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
 
       {/* Loading State */}
       {isLoadingSchedule && <LoadingState message={SCHEDULES_MESSAGES.loading} />}
@@ -161,7 +154,7 @@ export default function SchedulesPage() {
               description={SCHEDULES_MESSAGES.empty.description}
               action={{
                 label: SCHEDULES_MESSAGES.empty.action,
-                onClick: () => void router.push('/dashboard/ai-scheduler' as any),
+                onClick: () => window.location.href = '/dashboard/ai-scheduler',
               }}
             />
           )}

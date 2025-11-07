@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { tokenService } from '@/features/smart-shifts/auth/services/token.service';
 import styles from './navbar.module.css';
 import { UrlObject } from 'url';
 
@@ -12,6 +14,12 @@ interface NavbarProps {
 
 export function Navbar({ onToggleSidebar }: NavbarProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await tokenService.logout();
+    router.push('/login');
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -73,7 +81,7 @@ export function Navbar({ onToggleSidebar }: NavbarProps) {
                 Impostazioni
               </Link>
               <hr className={styles.divider} />
-              <button className={styles.dropdownItem}>
+              <button onClick={handleLogout} className={styles.dropdownItem}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
                   <polyline points="16 17 21 12 16 7"/>

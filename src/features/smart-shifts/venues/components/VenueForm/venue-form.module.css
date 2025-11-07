@@ -1,0 +1,174 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.sectionDescription {
+  font-size: var(--font-size-sm);
+  color: #6B7280;
+  margin: 0;
+  margin-top: calc(-1 * var(--spacing-sm));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--pure-black);
+}
+
+.required {
+  color: #DC2626;
+}
+
+.fieldHelp {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin-top: calc(-1 * var(--spacing-xs));
+}
+
+.openingHours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.dayRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: #F9FAFB;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.dayRow:hover {
+  border-color: #D1D5DB;
+}
+
+.dayLabel {
+  min-width: 100px;
+  font-weight: 500;
+  color: var(--pure-black);
+  font-size: var(--font-size-sm);
+}
+
+.timeInputs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.timeInput {
+  flex: 1;
+  max-width: 130px;
+}
+
+.timeSeparator {
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.removeButton,
+.addButton {
+  min-width: 140px;
+  font-size: var(--font-size-sm);
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-weight: 400;
+  font-size: var(--font-size-sm);
+  color: var(--pure-black);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--pure-black);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+  border-top: 1px solid #E5E5E5;
+}
+
+.actions button {
+  min-width: 140px;
+}
+
+@media (max-width: 768px) {
+  .dayRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .dayLabel {
+    width: 100%;
+  }
+
+  .timeInputs {
+    width: 100%;
+  }
+
+  .timeInput {
+    max-width: none;
+  }
+
+  .removeButton,
+  .addButton {
+    width: 100%;
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
+

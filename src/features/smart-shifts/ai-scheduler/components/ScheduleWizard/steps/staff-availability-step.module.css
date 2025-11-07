@@ -1,0 +1,291 @@
+@import '../../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.summaryCard {
+  background: var(--pure-white);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.summaryCard.available {
+  background: #ECFDF5;
+  border: 2px solid #10B981;
+}
+
+.summaryCard.unavailable {
+  background: #FEF2F2;
+  border: 2px solid #EF4444;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--pure-black);
+}
+
+.summaryLabel {
+  font-size: 13px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.warningBanner {
+  background: #FEF3C7;
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: #92400E;
+}
+
+.staffTable {
+  background: var(--pure-white);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableHeader {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tableTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--pure-black);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0;
+}
+
+.tableActions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: #F9FAFB;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.staffRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid #F3F4F6;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.staffRow:hover {
+  background: #F9FAFB;
+}
+
+.staffRow.selected {
+  background: #EFF6FF;
+  border-left: 3px solid var(--pure-black);
+}
+
+.unavailableRow {
+  opacity: 0.7;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkedIcon {
+  color: var(--pure-black);
+}
+
+.uncheckedIcon {
+  color: #9CA3AF;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.availableIcon {
+  color: #10B981;
+}
+
+.unavailableIcon {
+  color: #EF4444;
+}
+
+.staffInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.staffName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.staffMeta {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.unavailabilityReason {
+  font-size: 13px;
+  color: #DC2626;
+  font-weight: 500;
+}
+
+.statusBadge {
+  flex-shrink: 0;
+}
+
+.availableBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: #D1FAE5;
+  color: #065F46;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.expandButton {
+  display: flex;
+  align-items: center;
+  color: #6B7280;
+  flex-shrink: 0;
+}
+
+.absenceDetails {
+  background: #FEF2F2;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.absenceTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #991B1B;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.absencePeriod {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-sm);
+  background: var(--pure-white);
+  border-radius: 6px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.absencePeriod:last-child {
+  margin-bottom: 0;
+}
+
+.absenceDates {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.absenceType {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  gap: var(--spacing-md);
+  color: #EF4444;
+}
+
+.infoBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  font-size: 13px;
+  color: #1E40AF;
+}
+
+.infoBox p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .staffRow {
+    flex-wrap: wrap;
+  }
+
+  .statusBadge {
+    order: 3;
+    width: 100%;
+  }
+}
+

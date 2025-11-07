@@ -1,0 +1,53 @@
+@import '../../../landing-page/landing-globals.css';
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--pure-white);
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  color: #6B7280;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--pure-black);
+  white-space: nowrap;
+}
+
+.select {
+  min-width: 200px;
+  max-width: 300px;
+  padding: 6px 10px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  font-size: var(--font-size-sm);
+  background-color: var(--pure-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:hover {
+  border-color: #D1D5DB;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--pure-black);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #F3F4F6;
+}
+

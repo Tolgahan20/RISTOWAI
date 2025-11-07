@@ -119,3 +119,103 @@ export const SCHEDULES_MESSAGES = {
     format: (weekNumber: number, year: number) => `Settimana ${weekNumber}, ${year}`,
   },
 };
+
+export const VENUE_MESSAGES = {
+  create: {
+    success: 'Locale creato con successo!',
+    error: 'Errore nella creazione del locale',
+  },
+  update: {
+    success: 'Locale aggiornato con successo!',
+    error: 'Errore nell\'aggiornamento del locale',
+  },
+  delete: {
+    success: 'Locale eliminato con successo!',
+    error: 'Errore nell\'eliminazione del locale',
+    confirm: 'Sei sicuro di voler eliminare questo locale? Questa azione non può essere annullata.',
+    hasStaff: 'Impossibile eliminare il locale: ha staff associato',
+  },
+  load: {
+    error: 'Errore nel caricamento dei locali',
+  },
+  validation: {
+    nameRequired: 'Il nome è obbligatorio',
+    typeRequired: 'Seleziona un tipo di locale',
+    timezoneRequired: 'Il fuso orario è obbligatorio',
+    invalidTime: 'Orario non valido',
+  },
+};
+
+export const STAFF_MESSAGES = {
+  create: {
+    success: 'Dipendente aggiunto con successo!',
+    error: 'Errore nell\'aggiunta del dipendente',
+  },
+  update: {
+    success: 'Dipendente aggiornato con successo!',
+    error: 'Errore nell\'aggiornamento del dipendente',
+  },
+  delete: {
+    success: 'Dipendente eliminato con successo!',
+    error: 'Errore nell\'eliminazione del dipendente',
+    confirm: 'Sei sicuro di voler eliminare questo dipendente? Questa azione non può essere annullata.',
+  },
+  load: {
+    error: 'Errore nel caricamento dello staff',
+  },
+  validation: {
+    roleRequired: 'Il ruolo è obbligatorio',
+    contractTypeRequired: 'Seleziona un tipo di contratto',
+    weeklyHoursRequired: 'Le ore settimanali sono obbligatorie',
+    hourlyRateRequired: 'La tariffa oraria è obbligatoria',
+    hireDateRequired: 'La data di assunzione è obbligatoria',
+    invalidDate: 'Data non valida',
+    invalidEmail: 'Email non valida',
+    invalidPhone: 'Numero di telefono non valido',
+    invalidIban: 'IBAN non valido',
+    invalidCodiceFiscale: 'Codice fiscale non valido',
+  },
+};
+
+export const REQUEST_MESSAGES = {
+  create: {
+    success: 'Richiesta creata con successo',
+    error: 'Errore nella creazione della richiesta',
+  },
+  update: {
+    success: 'Richiesta aggiornata con successo',
+    error: 'Errore nell\'aggiornamento della richiesta',
+  },
+  delete: {
+    success: 'Richiesta eliminata con successo',
+    error: 'Errore nell\'eliminazione della richiesta',
+    confirm: 'Sei sicuro di voler eliminare questa richiesta?',
+  },
+  approve: {
+    success: 'Richiesta approvata con successo',
+    error: 'Errore nell\'approvazione della richiesta',
+    confirm: 'Sei sicuro di voler approvare questa richiesta?',
+  },
+  reject: {
+    success: 'Richiesta rifiutata',
+    error: 'Errore nel rifiuto della richiesta',
+    confirm: 'Sei sicuro di voler rifiutare questa richiesta?',
+  },
+  cancel: {
+    success: 'Richiesta annullata',
+    error: 'Errore nell\'annullamento della richiesta',
+    confirm: 'Sei sicuro di voler annullare questa richiesta?',
+  },
+  load: {
+    error: 'Errore nel caricamento delle richieste',
+  },
+  empty: {
+    title: 'Nessuna richiesta',
+    description: 'Non ci sono richieste da visualizzare.',
+  },
+  validation: {
+    endDateBeforeStart: 'La data di fine deve essere successiva alla data di inizio',
+    missingShift: 'Seleziona un turno per lo scambio',
+    missingStaff: 'Seleziona un dipendente per lo scambio',
+  },
+};

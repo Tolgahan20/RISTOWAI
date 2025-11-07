@@ -17,12 +17,19 @@ export interface ManualSeedShift {
   phaseId?: string;
 }
 
+export interface PhaseOverride {
+  phaseId: string;
+  requiredStaff: number;
+}
+
 export interface GenerateScheduleRequest {
   venueId: string;
   dateRange: DateRange;
   mode: ScheduleMode;
   manualSeeds?: ManualSeedShift[];
-  staffIds?: string[];
+  staffIds?: string[]; // Filter to specific staff (from Step 2 of wizard)
+  phaseIds?: string[]; // Filter to specific phases (from Step 3 of wizard)
+  phaseOverrides?: PhaseOverride[]; // Override coverage requirements (from Step 3 of wizard)
 }
 
 export interface ShiftAssignment {
@@ -112,8 +119,9 @@ export enum JobStatus {
 export interface JobStatusResponse {
   jobId: string;
   status: JobStatus;
+  request?: GenerateScheduleRequest;
   result?: ScheduleResponse;
-  error?: any;
+  error?: { message?: string; details?: unknown };
   createdAt: string;
   completedAt?: string;
 }

@@ -47,16 +47,19 @@ export const generateCalendarDays = (
 
 /**
  * Group shifts by time slots (hourly)
+ * Uses UTC hours since shifts are stored in UTC
  */
 export const groupShiftsByTimeSlot = (shifts: Shift[]): TimeSlot[] => {
   const timeSlotMap = new Map<number, Shift[]>();
 
   shifts.forEach((shift) => {
-    const startHour = new Date(shift.startTime).getHours();
-    const endHour = new Date(shift.endTime).getHours();
+    const startDate = new Date(shift.startTime);
+    const endDate = new Date(shift.endTime);
+    const startHour = startDate.getUTCHours();
+    const endHour = endDate.getUTCHours();
 
     // Add shift to all hours it spans
-    for (let hour = startHour; hour <= endHour; hour++) {
+    for (let hour = startHour; hour < endHour; hour++) {
       const existingShifts = timeSlotMap.get(hour) || [];
       if (!existingShifts.find((s) => s.id === shift.id)) {
         timeSlotMap.set(hour, [...existingShifts, shift]);
@@ -72,11 +75,20 @@ export const groupShiftsByTimeSlot = (shifts: Shift[]): TimeSlot[] => {
 
 /**
  * Check if a shift overlaps with a time slot
+ * Note: Uses UTC hours since shifts are stored in UTC
  */
 export const isShiftInTimeSlot = (shift: Shift, hour: number): boolean => {
-  const startHour = new Date(shift.startTime).getHours();
-  const endHour = new Date(shift.endTime).getHours();
-  return hour >= startHour && hour <= endHour;
+  const startDate = new Date(shift.startTime);
+  const endDate = new Date(shift.endTime);
+  const startHour = startDate.getUTCHours();
+  const endHour = endDate.getUTCHours();
+  
+  // Handle shifts that end at midnight or later
+  if (endHour === 0 && endDate.getTime() > startDate.getTime()) {
+    return hour >= startHour || hour === 0;
+  }
+  
+  return hour >= startHour && hour < endHour;
 };
 
 /**
@@ -105,19 +117,26 @@ export const calculateShiftDuration = (shift: Shift): number => {
 };
 
 /**
- * Get the range of hours covered by shifts
+ * Get the range of hours covered by shifts (dynamic based on actual shift times)
+ * Uses UTC hours since shifts are stored in UTC representing local venue time
  */
 export const getHourRange = (shifts: Shift[]): { min: number; max: number } => {
-  if (shifts.length === 0) return { min: 7, max: 23 }; // Default business hours
+  if (shifts.length === 0) return { min: 9, max: 23 }; // Default restaurant hours
 
-  const hours = shifts.flatMap((shift) => [
-    new Date(shift.startTime).getHours(),
-    new Date(shift.endTime).getHours(),
-  ]);
+  const startHours = shifts.map((shift) => new Date(shift.startTime).getUTCHours());
+  const endHours = shifts.map((shift) => {
+    const endDate = new Date(shift.endTime);
+    const endHour = endDate.getUTCHours();
+    // If shift ends at midnight or later, treat as 23
+    return endHour === 0 ? 24 : endHour;
+  });
+
+  const minHour = Math.min(...startHours);
+  const maxHour = Math.max(...endHours);
 
   return {
-    min: Math.max(0, Math.min(...hours) - 1), // Add padding
-    max: Math.min(23, Math.max(...hours) + 1),
+    min: Math.max(0, minHour), // Start at the earliest shift time
+    max: Math.min(23, maxHour), // End at the latest shift time
   };
 };
 

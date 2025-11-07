@@ -1,12 +1,19 @@
 'use client';
 
+import { useState } from 'react';
+import { PageHeader } from '@/components/dashboard/layout';
 import { VenueSelector } from '@/features/smart-shifts/ai-scheduler/components/VenueSelector';
 import { ScheduleGenerator } from '@/features/smart-shifts/ai-scheduler/components/ScheduleGenerator';
+import { JobHistory } from '@/features/smart-shifts/ai-scheduler/components/JobHistory';
 import { useVenueSelection } from '@/features/smart-shifts/ai-scheduler/hooks/useVenueSelection';
+import pageLayout from '@/styles/page-layout.module.css';
+import styles from './ai-scheduler.module.css';
+
+type Tab = 'generator' | 'history';
 
 export default function AISchedulerPage() {
-  const { venues, selectedVenueId, setSelectedVenueId, isLoading } =
-    useVenueSelection();
+  const { venues, selectedVenueId, setSelectedVenueId, isLoading } = useVenueSelection();
+  const [activeTab, setActiveTab] = useState<Tab>('generator');
 
   // Show venue selector if no venue is selected
   if (!selectedVenueId) {
@@ -20,6 +27,40 @@ export default function AISchedulerPage() {
     );
   }
 
-  // Show schedule generator once a venue is selected
-  return <ScheduleGenerator venueId={selectedVenueId} />;
+  const subtitle = activeTab === 'generator' 
+    ? 'Genera automaticamente i turni con l\'intelligenza artificiale'
+    : 'Visualizza lo storico delle generazioni di turni';
+
+  return (
+    <div className={pageLayout.pageContainer}>
+      <PageHeader
+        title="Generatore Turni AI"
+        subtitle={subtitle}
+        showVenueSelector={venues.length > 1}
+        venues={venues.map(v => ({ id: v.id, name: v.name, address: v.address }))}
+        selectedVenueId={selectedVenueId}
+        onVenueChange={setSelectedVenueId}
+      />
+
+      <div className={styles.tabs}>
+        <button
+          className={`${styles.tab} ${activeTab === 'generator' ? styles.tabActive : ''}`}
+          onClick={() => setActiveTab('generator')}
+        >
+          Genera Turni
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'history' ? styles.tabActive : ''}`}
+          onClick={() => setActiveTab('history')}
+        >
+          Cronologia
+        </button>
+      </div>
+
+      <div className={styles.tabContent}>
+        {activeTab === 'generator' && <ScheduleGenerator venueId={selectedVenueId} />}
+        {activeTab === 'history' && <JobHistory />}
+      </div>
+    </div>
+  );
 }
