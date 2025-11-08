@@ -137,5 +137,39 @@ export const api = {
       byVenue: (venueId: string) => `${BASE_URL}/manual-adjustments/venue/${venueId}`,
     },
   },
+
+  exports: {
+    validate: `${BASE_URL}/exports/validate`,
+    create: `${BASE_URL}/exports`,
+    byVenue: (venueId: string) => `${BASE_URL}/exports/venue/${venueId}`,
+    byId: (id: string) => `${BASE_URL}/exports/${id}`,
+    download: (id: string) => `${BASE_URL}/exports/${id}/download`,
+    delete: (id: string) => `${BASE_URL}/exports/${id}`,
+  },
+
+  weeklyAdmin: {
+    getData: (venueId: string) => `${BASE_URL}/weekly-admin/${venueId}`,
+    resolveAnomaly: (venueId: string, timeEventId: string) => 
+      `${BASE_URL}/weekly-admin/${venueId}/anomalies/${timeEventId}/resolve`,
+    approveExtraHours: (venueId: string) => 
+      `${BASE_URL}/weekly-admin/${venueId}/extra-hours/approve`,
+    lockWeek: (venueId: string) => `${BASE_URL}/weekly-admin/${venueId}/lock`,
+    unlockWeek: (venueId: string) => `${BASE_URL}/weekly-admin/${venueId}/unlock`,
+  },
+
+  dashboard: {
+    kpis: `${BASE_URL}/dashboard/kpis`,
+  },
+
+  incidents: {
+    list: `${BASE_URL}/incidents`,
+    create: `${BASE_URL}/incidents`,
+    getById: (id: string) => `${BASE_URL}/incidents/${id}`,
+    update: (id: string) => `${BASE_URL}/incidents/${id}`,
+    resolve: (id: string) => `${BASE_URL}/incidents/${id}/resolve`,
+    close: (id: string) => `${BASE_URL}/incidents/${id}/close`,
+    delete: (id: string) => `${BASE_URL}/incidents/${id}`,
+    stats: `${BASE_URL}/incidents/stats`,
+  },
 } as const;
   

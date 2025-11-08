@@ -1,0 +1,74 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--pure-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.value {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--pure-black);
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.trend {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: var(--spacing-lg);
+  }
+
+  .icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .value {
+    font-size: 1.5rem;
+  }
+}
+

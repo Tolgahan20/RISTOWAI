@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { Edit2, Trash2, Check, X, XCircle } from 'react-feather';
 import { DataTable, TableFilters, Pagination, EmptyState, LoadingState, ErrorState } from '@/components/dashboard/ui';
 import { ConfirmModal } from '@/components/dashboard/ui/ConfirmModal';
+import { RequestApprovalDialog } from '../RequestApprovalDialog';
 import { useRequestsList } from '../../hooks';
 import { RequestStatus, RequestType, RequestPriority } from '../../types';
 import { REQUEST_MESSAGES } from '../../../common/constants/messages';
-import type { Request } from '../../types';
+import type { Request, VisualizeAs } from '../../types';
 import type { Column } from '@/components/dashboard/ui/DataTable';
 import type { FilterField } from '@/components/dashboard/ui/TableFilters';
 import styles from './requests-list.module.css';
@@ -75,9 +76,14 @@ export const RequestsList: React.FC<RequestsListProps> = ({
 
   const [confirmModal, setConfirmModal] = useState<{
     isOpen: boolean;
-    action: 'delete' | 'approve' | 'reject' | 'cancel' | null;
+    action: 'delete' | 'reject' | 'cancel' | null;
     requestId: string | null;
   }>({ isOpen: false, action: null, requestId: null });
+
+  const [approvalDialog, setApprovalDialog] = useState<{
+    isOpen: boolean;
+    request: Request | null;
+  }>({ isOpen: false, request: null });
 
   const [reviewNotes, setReviewNotes] = useState('');
 
@@ -91,9 +97,6 @@ export const RequestsList: React.FC<RequestsListProps> = ({
       case 'delete':
         actions.handleDelete(confirmModal.requestId);
         break;
-      case 'approve':
-        actions.handleApprove(confirmModal.requestId, { reviewerNotes: reviewNotes });
-        break;
       case 'reject':
         actions.handleReject(confirmModal.requestId, { reviewerNotes: reviewNotes });
         break;
@@ -106,8 +109,23 @@ export const RequestsList: React.FC<RequestsListProps> = ({
     setReviewNotes('');
   };
 
-  const openConfirmModal = (action: 'delete' | 'approve' | 'reject' | 'cancel', requestId: string) => {
+  const handleApprovalConfirm = (data: {
+    reviewerNotes?: string;
+    visualizeAs?: VisualizeAs;
+    hoursOverride?: number;
+  }) => {
+    if (!approvalDialog.request) return;
+
+    actions.handleApprove(approvalDialog.request.id, data);
+    setApprovalDialog({ isOpen: false, request: null });
+  };
+
+  const openConfirmModal = (action: 'delete' | 'reject' | 'cancel', requestId: string) => {
     setConfirmModal({ isOpen: true, action, requestId });
+  };
+
+  const openApprovalDialog = (request: Request) => {
+    setApprovalDialog({ isOpen: true, request });
   };
 
   const columns: Column<Request>[] = [
@@ -173,7 +191,7 @@ export const RequestsList: React.FC<RequestsListProps> = ({
           {request.status === RequestStatus.PENDING && (
             <>
               <button
-                onClick={() => openConfirmModal('approve', request.id)}
+                onClick={() => openApprovalDialog(request)}
                 className={styles.actionButton}
                 title="Approva"
               >
@@ -306,35 +324,39 @@ export const RequestsList: React.FC<RequestsListProps> = ({
         )}
       </div>
 
+      {/* Approval Dialog with Time Bank integration */}
+      <RequestApprovalDialog
+        isOpen={approvalDialog.isOpen}
+        onClose={() => setApprovalDialog({ isOpen: false, request: null })}
+        onConfirm={handleApprovalConfirm}
+        request={approvalDialog.request}
+        isLoading={false}
+      />
+
+      {/* Confirm Modal for other actions */}
       {confirmModal.isOpen && (
         <ConfirmModal
           isOpen={confirmModal.isOpen}
           title={
             confirmModal.action === 'delete'
               ? 'Conferma Eliminazione'
-              : confirmModal.action === 'approve'
-                ? 'Conferma Approvazione'
-                : confirmModal.action === 'reject'
-                  ? 'Conferma Rifiuto'
-                  : 'Conferma Annullamento'
+              : confirmModal.action === 'reject'
+                ? 'Conferma Rifiuto'
+                : 'Conferma Annullamento'
           }
           message={
             confirmModal.action === 'delete'
               ? REQUEST_MESSAGES.delete.confirm
-              : confirmModal.action === 'approve'
-                ? REQUEST_MESSAGES.approve.confirm
-                : confirmModal.action === 'reject'
-                  ? REQUEST_MESSAGES.reject.confirm
-                  : REQUEST_MESSAGES.cancel.confirm
+              : confirmModal.action === 'reject'
+                ? REQUEST_MESSAGES.reject.confirm
+                : REQUEST_MESSAGES.cancel.confirm
           }
           confirmText={
             confirmModal.action === 'delete'
               ? 'Elimina'
-              : confirmModal.action === 'approve'
-                ? 'Approva'
-                : confirmModal.action === 'reject'
-                  ? 'Rifiuta'
-                  : 'Annulla'
+              : confirmModal.action === 'reject'
+                ? 'Rifiuta'
+                : 'Annulla'
           }
           onConfirm={handleConfirmAction}
           onClose={() => {

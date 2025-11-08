@@ -219,3 +219,112 @@ export const REQUEST_MESSAGES = {
     missingStaff: 'Seleziona un dipendente per lo scambio',
   },
 };
+
+export const EXPORT_MESSAGES = {
+  create: {
+    success: 'Export creato con successo',
+    error: 'Errore nella creazione dell\'export',
+  },
+  validate: {
+    success: 'Validazione completata con successo',
+    error: 'Errore nella validazione',
+  },
+  download: {
+    success: 'Export scaricato con successo',
+    error: 'Errore nello scaricamento dell\'export',
+  },
+  delete: {
+    success: 'Export eliminato con successo',
+    error: 'Errore nell\'eliminazione dell\'export',
+    confirm: 'Sei sicuro di voler eliminare questo export?',
+  },
+  load: {
+    loading: 'Caricamento exports...',
+    error: 'Errore nel caricamento degli exports',
+  },
+  empty: {
+    title: 'Nessun export disponibile',
+    description: 'Crea il tuo primo export utilizzando il form sopra',
+  },
+  status: {
+    completed: 'Completato',
+    processing: 'Elaborazione',
+    pending: 'In Attesa',
+    failed: 'Fallito',
+  },
+  validation: {
+    dateRangeRequired: 'Seleziona un intervallo di date',
+    invalidDateRange: 'La data di fine deve essere successiva alla data di inizio',
+    noShifts: 'Nessun turno trovato nel periodo selezionato',
+    noTimeEvents: 'Turni programmati ma nessuna rilevazione presenze trovata',
+  },
+};
+
+export const WEEKLY_ADMIN_MESSAGES = {
+  load: {
+    loading: 'Caricamento dati settimanali...',
+    error: 'Errore nel caricamento dei dati settimanali',
+  },
+  anomaly: {
+    resolve: {
+      success: 'Anomalia risolta con successo',
+      error: 'Errore nella risoluzione dell\'anomalia',
+    },
+  },
+  extraHours: {
+    approve: {
+      success: 'Ore extra approvate con successo',
+      error: 'Errore nell\'approvazione delle ore extra',
+    },
+  },
+  lock: {
+    success: 'Settimana bloccata con successo',
+    error: 'Errore nel bloccare la settimana',
+  },
+  unlock: {
+    success: 'Settimana sbloccata con successo',
+    error: 'Errore nello sbloccare la settimana',
+  },
+  empty: {
+    anomalies: {
+      title: 'Nessuna Anomalia',
+      description: 'Ottimo lavoro! Non ci sono anomalie da risolvere per questa settimana.',
+    },
+    extraHours: {
+      title: 'Nessuna Ora Extra',
+      description: 'Non ci sono ore extra da approvare per questa settimana.',
+    },
+  },
+};
+
+export const INCIDENT_MESSAGES = {
+  load: {
+    loading: 'Caricamento incidenti...',
+    error: 'Errore nel caricamento degli incidenti',
+  },
+  create: {
+    success: 'Incidente creato con successo',
+    error: 'Errore nella creazione dell\'incidente',
+  },
+  update: {
+    success: 'Incidente aggiornato con successo',
+    error: 'Errore nell\'aggiornamento dell\'incidente',
+  },
+  resolve: {
+    success: 'Incidente risolto con successo',
+    error: 'Errore nella risoluzione dell\'incidente',
+  },
+  close: {
+    success: 'Incidente chiuso con successo',
+    error: 'Errore nella chiusura dell\'incidente',
+  },
+  delete: {
+    success: 'Incidente eliminato con successo',
+    error: 'Errore nell\'eliminazione dell\'incidente',
+    confirm: 'Sei sicuro di voler eliminare questo incidente? Questa azione non può essere annullata.',
+  },
+  empty: {
+    title: 'Nessun Incidente',
+    description: 'Non ci sono incidenti registrati per i filtri selezionati.',
+  },
+};

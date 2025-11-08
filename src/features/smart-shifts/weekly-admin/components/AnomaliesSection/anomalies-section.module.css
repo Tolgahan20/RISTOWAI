@@ -1,0 +1,234 @@
+@import '../../../../../components/landing-page/landing-globals.css';
+
+.container {
+  background: var(--pure-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.anomalyCard {
+  border: 1px solid var(--background-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.anomalyCard:hover:not(.resolved) {
+  border-color: #d1d5db;
+  box-shadow: var(--shadow-sm);
+}
+
+.anomalyCard.expanded {
+  cursor: default;
+  border-color: var(--primary-green);
+}
+
+.anomalyCard.resolved {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+  cursor: default;
+}
+
+.anomalyHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.anomalyInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.severityDot {
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.anomalyDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.staffName {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.anomalyMeta {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.anomalyDescription {
+  font-size: 0.875rem;
+  color: #374151;
+  padding-left: var(--spacing-xl);
+}
+
+.resolutionForm {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--background-gray);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.textarea,
+.input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.875rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.textarea:focus,
+.input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.cancelButton,
+.resolveButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cancelButton {
+  background-color: var(--background-gray);
+  color: var(--pure-black);
+}
+
+.cancelButton:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.resolveButton {
+  background-color: var(--primary-green);
+  color: var(--pure-white);
+}
+
+.resolveButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.cancelButton:disabled,
+.resolveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.separator {
+  margin: var(--spacing-lg) 0;
+  text-align: center;
+  position: relative;
+}
+
+.separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--background-gray);
+  z-index: 0;
+}
+
+.separator span {
+  position: relative;
+  padding: 0 var(--spacing-lg);
+  background: var(--pure-white);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  z-index: 1;
+}
+
+.resolutionNote {
+  margin: var(--spacing-sm) 0 0 0;
+  padding-left: var(--spacing-xl);
+  font-size: 0.875rem;
+  color: var(--primary-green);
+  font-style: italic;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  text-align: center;
+}
+
+.emptyTitle {
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.emptyDescription {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}

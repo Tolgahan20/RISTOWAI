@@ -69,8 +69,16 @@ export interface UpdateRequestRequest {
   swapWithStaffId?: string;
 }
 
+export enum VisualizeAs {
+  VACATION = 'VACATION',
+  ROL = 'ROL',
+  NONE = 'NONE',
+}
+
 export interface ReviewRequestRequest {
   reviewerNotes?: string;
+  visualizeAs?: VisualizeAs;
+  hoursOverride?: number;
 }
 
 export interface RequestStats {

@@ -94,10 +94,27 @@ export const useRequestForm = ({ venueId, request, onSuccess }: UseRequestFormPr
       return;
     }
 
+    // Clean data: remove empty strings for optional fields
+    const cleanedData = { ...formData };
+
+    // Remove empty optional fields
+    if (!cleanedData.reason || cleanedData.reason.trim() === '') {
+      delete cleanedData.reason;
+    }
+    if (!cleanedData.notes || cleanedData.notes.trim() === '') {
+      delete cleanedData.notes;
+    }
+    if (!cleanedData.targetShiftId || cleanedData.targetShiftId.trim() === '') {
+      delete cleanedData.targetShiftId;
+    }
+    if (!cleanedData.swapWithStaffId || cleanedData.swapWithStaffId.trim() === '') {
+      delete cleanedData.swapWithStaffId;
+    }
+
     if (request) {
-      updateMutation.mutate(formData);
+      updateMutation.mutate(cleanedData as UpdateRequestRequest);
     } else {
-      createMutation.mutate(formData);
+      createMutation.mutate(cleanedData as CreateRequestRequest);
     }
   };
 
