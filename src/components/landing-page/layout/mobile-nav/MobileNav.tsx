@@ -125,7 +125,7 @@ export const MobileNav: React.FC = () => {
                 />
               </Link>
 
-              <Link href={"/demo" as unknown as UrlObject} className={styles.demoButton}>
+              <Link href={"/beta-test" as unknown as UrlObject} className={styles.demoButton}>
                 <span>Beta Test</span>
               </Link>
             </>

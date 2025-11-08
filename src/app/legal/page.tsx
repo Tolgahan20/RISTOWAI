@@ -19,17 +19,24 @@ function LegalPageContent() {
   const [showReveal, setShowReveal] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState<LegalSection>('privacy');
   
-  // Initialize activeSection from URL params
-  const getInitialSection = (): LegalSection => {
-    const section = searchParams.get('section') as LegalSection;
-    if (section && ['privacy', 'terms', 'cookies'].includes(section)) {
-      return section;
+  // Update activeSection from URL params after mount
+  useEffect(() => {
+    try {
+      const section = searchParams.get('section') as LegalSection;
+      if (section && ['privacy', 'terms', 'cookies'].includes(section)) {
+        setTimeout(() => {
+          setActiveSection(section);
+        }, 0);
+      }
+    } catch (error) {
+      console.error('Error reading search params:', error);
+      setTimeout(() => {
+        setActiveSection('privacy');
+      }, 0);
     }
-    return 'privacy';
-  };
-  
-  const [activeSection, setActiveSection] = useState<LegalSection>(getInitialSection);
+  }, [searchParams]);
 
   useEffect(() => {
     const content = contentRef.current;
@@ -82,7 +89,11 @@ function LegalPageContent() {
 
   const handleSectionChange = (section: LegalSection) => {
     setActiveSection(section);
-    router.push(`/legal?section=${section}` as unknown as Route, { scroll: false });
+    try {
+      router.push(`/legal?section=${section}` as unknown as Route, { scroll: false });
+    } catch (error) {
+      console.error('Error navigating:', error);
+    }
   };
 
   const getContent = () => {
@@ -151,9 +162,41 @@ function LegalPageContent() {
   );
 }
 
+function LegalPageSkeleton() {
+  return (
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      gap: '1rem',
+      padding: '2rem'
+    }}>
+      <div style={{
+        width: '40px',
+        height: '40px',
+        border: '3px solid rgba(0, 0, 0, 0.1)',
+        borderTopColor: '#000',
+        borderRadius: '50%',
+        animation: 'spin 0.8s linear infinite'
+      }} />
+      <p style={{ color: 'rgba(0, 0, 0, 0.6)', fontSize: '0.9rem' }}>
+        Caricamento...
+      </p>
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function LegalPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', backgroundColor: '#fff' }} />}>
+    <Suspense fallback={<LegalPageSkeleton />}>
       <LegalPageContent />
     </Suspense>
   );

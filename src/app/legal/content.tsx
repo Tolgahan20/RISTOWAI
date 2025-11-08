@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const cookiePolicyContent = (
   <>
     <h2>Cookie Policy</h2>
