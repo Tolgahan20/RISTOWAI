@@ -4,7 +4,7 @@ import type { AxiosError } from 'axios';
 import * as onboardingApi from '../api';
 import { useNotification } from '../../common/hooks/useNotification';
 import { ONBOARDING_MESSAGES } from '../../common/constants/messages';
-import { tokenService } from '../../auth/services/token.service';
+import { tokenService } from '../../../auth/services/token.service';
 import type {
   VenueInfoData,
   WorkPhasesData,

@@ -1,0 +1,55 @@
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.topBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.createButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--pure-black);
+  color: var(--pure-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.createButton:hover {
+  background: #333;
+}
+
+.createButton svg {
+  flex-shrink: 0;
+}
+
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-3xl);
+  background: var(--pure-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  color: #6b7280;
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 640px) {
+  .createButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

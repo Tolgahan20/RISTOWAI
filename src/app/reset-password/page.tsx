@@ -7,7 +7,7 @@ import type { UrlObject } from 'url';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ArrowLeft } from 'react-feather';
-import { ResetPasswordForm } from '@/features/smart-shifts/auth/components/ResetPasswordForm';
+import { ResetPasswordForm } from '@/features/auth/components/ResetPasswordForm';
 import styles from './page.module.css';
 
 function ResetPasswordContent() {

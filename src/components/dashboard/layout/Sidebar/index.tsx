@@ -20,7 +20,7 @@ const MENU_ITEMS = [
         <rect x="3" y="14" width="7" height="7"/>
       </svg>
     ),
-    href: '/dashboard',
+    href: '/dashboard/smart-shifts',
   },
   {
     label: 'AI Scheduler',
@@ -31,7 +31,7 @@ const MENU_ITEMS = [
         <line x1="12" y1="22.08" x2="12" y2="12"/>
       </svg>
     ),
-    href: '/dashboard/ai-scheduler',
+    href: '/dashboard/smart-shifts/ai-scheduler',
   },
   {
     label: 'Turni',
@@ -43,7 +43,7 @@ const MENU_ITEMS = [
         <line x1="3" y1="10" x2="21" y2="10"/>
       </svg>
     ),
-    href: '/dashboard/schedules',
+    href: '/dashboard/smart-shifts/schedules',
   },
   {
     label: 'Locali',
@@ -53,7 +53,7 @@ const MENU_ITEMS = [
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     ),
-    href: '/dashboard/venues',
+    href: '/dashboard/smart-shifts/venues',
   },
   {
     label: 'Staff',
@@ -65,7 +65,7 @@ const MENU_ITEMS = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
-    href: '/dashboard/staff',
+    href: '/dashboard/smart-shifts/staff',
   },
   {
     label: 'Fasi',
@@ -80,7 +80,7 @@ const MENU_ITEMS = [
         <line x1="16.62" y1="12" x2="10.88" y2="21.94"/>
       </svg>
     ),
-    href: '/dashboard/phases',
+    href: '/dashboard/smart-shifts/phases',
   },
   {
     label: 'Ruoli',
@@ -90,7 +90,7 @@ const MENU_ITEMS = [
         <circle cx="12" cy="7" r="4"/>
       </svg>
     ),
-    href: '/dashboard/roles',
+    href: '/dashboard/smart-shifts/roles',
   },
   {
     label: 'Assenze',
@@ -103,7 +103,7 @@ const MENU_ITEMS = [
         <line x1="10" y1="16" x2="14" y2="16"/>
       </svg>
     ),
-    href: '/dashboard/absences',
+    href: '/dashboard/smart-shifts/absences',
   },
   {
     label: 'Punch Clock',
@@ -115,7 +115,7 @@ const MENU_ITEMS = [
         <path d="M12 20v2"/>
       </svg>
     ),
-    href: '/dashboard/punch-clock',
+    href: '/dashboard/smart-shifts/punch-clock',
   },
   {
     label: 'Snapshot Turni',
@@ -127,7 +127,7 @@ const MENU_ITEMS = [
         <polyline points="21 12 16.5 14.6 16.5 19.79"/>
       </svg>
     ),
-    href: '/dashboard/shift-snapshots',
+    href: '/dashboard/smart-shifts/shift-snapshots',
   },
   {
     label: 'Banca Ore',
@@ -139,7 +139,7 @@ const MENU_ITEMS = [
         <path d="M7.76 16.24l1.5-1.5"/>
       </svg>
     ),
-    href: '/dashboard/time-bank',
+    href: '/dashboard/smart-shifts/time-bank',
   },
   {
     label: 'Richieste',
@@ -152,7 +152,7 @@ const MENU_ITEMS = [
         <polyline points="10 9 9 9 8 9"/>
       </svg>
     ),
-    href: '/dashboard/requests',
+    href: '/dashboard/smart-shifts/requests',
   },
   {
     label: 'Export',
@@ -163,7 +163,7 @@ const MENU_ITEMS = [
         <line x1="12" y1="15" x2="12" y2="3"/>
       </svg>
     ),
-    href: '/dashboard/exports',
+    href: '/dashboard/smart-shifts/exports',
   },
 ];
 

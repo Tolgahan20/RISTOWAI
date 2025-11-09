@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { venuesApi } from '../api';
-import { useRestaurantId } from '../../auth/hooks';
+import { useRestaurantId } from '../../../auth/hooks';
 import { useNotificationStore } from '../../common/stores/notification';
 import { VENUE_MESSAGES } from '../../common/constants/messages';
 import type { CreateVenueRequest, UpdateVenueRequest, Venue, VenueType, OpeningHours, VenueSettings } from '../types';

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ArrowLeft } from 'react-feather';
-import {LoginForm} from '@/features/smart-shifts/auth/components/LoginForm';
+import {LoginForm} from '@/features/auth/components/LoginForm';
 import styles from './page.module.css';
 
 export default function LoginPage() {

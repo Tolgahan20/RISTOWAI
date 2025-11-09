@@ -1,0 +1,128 @@
+
+
+.card {
+  background: var(--pure-white);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mainScore {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.scoreCircle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--score-color) var(--score-percentage),
+    rgba(0, 0, 0, 0.08) var(--score-percentage)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.scoreCircle::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--pure-white);
+}
+
+.scoreValue {
+  position: relative;
+  z-index: 1;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--pure-black);
+  line-height: 1;
+}
+
+.scoreMax {
+  position: relative;
+  z-index: 1;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.scoreInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.scoreLabel {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--pure-black);
+  margin: 0;
+}
+
+.scoreIcon {
+  display: flex;
+  align-items: center;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--pure-black);
+}
+
+@media (max-width: 768px) {
+  .mainScore {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scoreCircle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .scoreCircle::before {
+    width: 80px;
+    height: 80px;
+  }
+
+  .scoreValue {
+    font-size: 2rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+

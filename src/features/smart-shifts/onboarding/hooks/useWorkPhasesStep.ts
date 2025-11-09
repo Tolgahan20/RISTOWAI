@@ -58,16 +58,18 @@ export const useWorkPhasesStep = ({
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, templatesFromIndustry?: WorkPhase[]) => {
     e.preventDefault();
-    if (phases.length === 0) {
+    const phasesToSave = templatesFromIndustry || phases;
+    if (phasesToSave.length === 0) {
       return;
     }
-    await onSave({ phases });
+    await onSave({ phases: phasesToSave });
   };
 
   return {
     phases,
+    setPhases,
     editingPhase,
     setEditingPhase,
     handleAddPhase,

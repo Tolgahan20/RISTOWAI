@@ -1,13 +1,14 @@
 'use client';
 
-import React from 'react';
-import { Plus, Filter, BarChart } from 'react-feather';
+import React, { useState } from 'react';
+import { Plus, Filter, BarChart, Download } from 'react-feather';
 import { Button } from '@/components/dashboard/ui/Button';
 import { Select } from '@/components/dashboard/ui/Select';
 import { LoadingState, ErrorState, EmptyState } from '@/components/dashboard/ui';
 import { Pagination } from '@/components/dashboard/ui/Pagination';
 import { PhaseCard } from '../PhaseCard';
 import { PhaseModal } from '../PhaseModal';
+import { PresetModal } from '../PresetModal';
 import { ConfirmModal } from '@/components/dashboard/ui/ConfirmModal';
 import { usePhasesList } from '../../hooks';
 import { PHASE_TYPE_LABELS, DAYS_OF_WEEK } from '../../types';
@@ -18,6 +19,8 @@ interface PhasesListProps {
 }
 
 export const PhasesList: React.FC<PhasesListProps> = ({ venueId }) => {
+  const [isPresetModalOpen, setIsPresetModalOpen] = useState(false);
+  
   const {
     phases,
     total,
@@ -83,6 +86,10 @@ export const PhasesList: React.FC<PhasesListProps> = ({ venueId }) => {
           <Button onClick={toggleFilters} variant="ghost">
             <Filter size={18} />
             Filtri
+          </Button>
+          <Button onClick={() => setIsPresetModalOpen(true)} variant="secondary">
+            <Download size={18} />
+            Carica Preset
           </Button>
           <Button onClick={handleAdd} variant="primary">
             <Plus size={18} />
@@ -190,6 +197,12 @@ export const PhasesList: React.FC<PhasesListProps> = ({ venueId }) => {
         variant="danger"
         confirmText="Elimina"
         cancelText="Annulla"
+      />
+
+      <PresetModal
+        venueId={venueId}
+        isOpen={isPresetModalOpen}
+        onClose={() => setIsPresetModalOpen(false)}
       />
     </div>
   );

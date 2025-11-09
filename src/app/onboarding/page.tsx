@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useOnboarding } from '@/features/smart-shifts/onboarding/hooks/useOnboarding';
 import { WelcomeScreen } from '@/features/smart-shifts/onboarding/components/WelcomeScreen';
 import { OnboardingWizard } from '@/features/smart-shifts/onboarding/components/OnboardingWizard';
-import { tokenService } from '@/features/smart-shifts/auth/services/token.service';
+import { tokenService } from '@/features/auth/services/token.service';
 import styles from './page.module.css';
 
 export default function OnboardingPage() {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { tokenService } from '../../auth/services/token.service';
+import { tokenService } from '../../../auth/services/token.service';
 import { api } from '../constants/api';
 
 export const axiosInstance = axios.create({

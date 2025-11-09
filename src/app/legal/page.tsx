@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import gsap from 'gsap';
-import '@/components/landing-page/landing-globals.css';
 import styles from './page.module.css';
 import { DesktopNav } from '@/components/landing-page/layout/desktop-nav/DesktopNav';
 import { MobileNav } from '@/components/landing-page/layout/mobile-nav/MobileNav';

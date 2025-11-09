@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { tokenService } from '@/features/smart-shifts/auth/services/token.service';
+import { tokenService } from '@/features/auth/services/token.service';
+import { useProfile } from '@/features/auth/hooks/profile';
 import styles from './navbar.module.css';
 import { UrlObject } from 'url';
 
@@ -15,6 +16,11 @@ interface NavbarProps {
 export function Navbar({ onToggleSidebar }: NavbarProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const router = useRouter();
+  const { data: profile } = useProfile();
+  
+  const displayName = profile 
+    ? `${profile.firstName} ${profile.lastName}`
+    : 'Caricamento...';
 
   const handleLogout = async () => {
     await tokenService.logout();
@@ -31,7 +37,7 @@ export function Navbar({ onToggleSidebar }: NavbarProps) {
             <line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
         </button>
-        <Link href="/dashboard" className={styles.logo}>
+        <Link href={"/dashboard" as unknown as UrlObject}  className={styles.logo}>
           <Image src="/full_logo_black.svg" alt="Ristowai" width={120} height={40} priority />
         </Link>
       </div>
@@ -58,7 +64,7 @@ export function Navbar({ onToggleSidebar }: NavbarProps) {
                 <circle cx="12" cy="7" r="4"/>
               </svg>
             </div>
-            <span className={styles.userName}>Mario Rossi</span>
+            <span className={styles.userName}>{displayName}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m6 9 6 6 6-6"/>
             </svg>

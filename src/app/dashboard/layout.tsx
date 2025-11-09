@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { tokenService } from '@/features/smart-shifts/auth/services/token.service';
+import { tokenService } from '@/features/auth/services/token.service';
 import { DashboardLayout } from '@/components/dashboard/layout';
 
 export default function DashboardRootLayout({

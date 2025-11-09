@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { ArrowLeft } from 'react-feather';
 import Image from 'next/image';
-import '@/components/landing-page/landing-globals.css';
 import styles from './page.module.css';
 
 interface ContactFormData {

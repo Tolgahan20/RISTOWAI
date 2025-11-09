@@ -21,6 +21,11 @@ export const api = {
     },
     logout: `${BASE_URL}/auth/logout`,
   },
+  user: {
+    profile: `${BASE_URL}/user/me`,
+    changePassword: `${BASE_URL}/user/change-password`,
+    changeEmail: `${BASE_URL}/user/change-email`,
+  },
   onboarding: {
     start: `${BASE_URL}/api/onboarding/start`,
     session: `${BASE_URL}/api/onboarding/session`,
@@ -74,6 +79,11 @@ export const api = {
     create: (venueId: string) => `${BASE_URL}/api/phases/${venueId}`,
     update: (venueId: string, phaseId: string) => `${BASE_URL}/api/phases/${venueId}/${phaseId}`,
     delete: (venueId: string, phaseId: string) => `${BASE_URL}/api/phases/${venueId}/${phaseId}`,
+    presets: {
+      industries: `${BASE_URL}/api/phases/presets/industries`,
+      templates: (industryType: string) => `${BASE_URL}/api/phases/presets/${industryType}`,
+      apply: (venueId: string) => `${BASE_URL}/api/phases/${venueId}/apply-preset`,
+    },
   },
   roles: {
     list: `${BASE_URL}/api/roles`,
@@ -171,5 +181,15 @@ export const api = {
     delete: (id: string) => `${BASE_URL}/incidents/${id}`,
     stats: `${BASE_URL}/incidents/stats`,
   },
+
+  fairRotation: {
+    stats: (venueId: string) => `${BASE_URL}/smart-shifts/fair-rotation/${venueId}/stats`,
+  },
+
+  reports: {
+    costEstimatePdf: (venueId: string, startDate: string, endDate: string) =>
+      `${BASE_URL}/smart-shifts/reports/${venueId}/cost-estimate/pdf?startDate=${startDate}&endDate=${endDate}`,
+    costEstimateData: (venueId: string, startDate: string, endDate: string) =>
+      `${BASE_URL}/smart-shifts/reports/${venueId}/cost-estimate/data?startDate=${startDate}&endDate=${endDate}`,
+  },
 } as const;
-  

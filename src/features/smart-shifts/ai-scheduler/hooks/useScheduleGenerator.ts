@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useNotificationStore } from '@/features/smart-shifts/common/stores/notification';
 import { useScheduleForm } from './useScheduleForm';
 import { usePublishSchedule } from './usePublishSchedule';
@@ -18,7 +17,6 @@ interface UseScheduleGeneratorProps {
 }
 
 export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
-  const router = useRouter();
   const { showNotification } = useNotificationStore();
   const [showResults, setShowResults] = useState(false);
   const [schedule, setSchedule] = useState<ScheduleResponse | null>(null);
@@ -47,7 +45,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
         type: 'success',
         message: AI_SCHEDULER_MESSAGES.publishSuccess,
       });
-      router.push(`/dashboard/schedules?scheduleId=${data.scheduleId}`);
+      window.location.href = `/dashboard/schedules?scheduleId=${data.scheduleId}`;
     },
     onError: (error) => {
       showNotification({

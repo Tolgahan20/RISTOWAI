@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { venuesApi } from '../api';
-import { useRestaurantId } from '../../auth/hooks';
+import { useRestaurantId } from '../../../auth/hooks';
 
 export const useVenues = () => {
   const restaurantId = useRestaurantId();

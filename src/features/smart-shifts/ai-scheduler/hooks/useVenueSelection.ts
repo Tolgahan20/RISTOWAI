@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { venuesApi } from '../../venues';
-import { useRestaurantId } from '../../auth/hooks';
+import { useRestaurantId } from '../../../auth/hooks';
 import { useVenueStore } from '@/stores/venueStore';
 
 export const useVenueSelection = () => {

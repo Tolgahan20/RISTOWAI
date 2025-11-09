@@ -6,7 +6,7 @@ import type { UrlObject } from 'url';
 import Image from 'next/image';
 import { ArrowLeft } from 'react-feather';
 import { gsap } from 'gsap';
-import { RegisterForm } from '@/features/smart-shifts/auth/components/RegisterForm';
+import { RegisterForm } from '@/features/auth/components/RegisterForm';
 import styles from './page.module.css';
 
 export default function RegisterPage() {
