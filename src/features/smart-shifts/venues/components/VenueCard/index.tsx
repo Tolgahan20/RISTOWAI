@@ -88,7 +88,7 @@ export const VenueCard: React.FC<VenueCardProps> = ({ venue, onEdit, onDelete })
       )}
 
       <div className={styles.actions}>
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/venues/${venue.id}` as any)} className={styles.viewButton}>
+        <Button variant="ghost" onClick={() => router.push(`/dashboard/smart-shifts/venues/${venue.id}`)} className={styles.viewButton}>
           <Eye size={16} />
           Dettagli
         </Button>

@@ -5,6 +5,7 @@
   border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--background-gray);
 }
 
 .header {
@@ -17,8 +18,8 @@
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
   color: var(--pure-black);
   display: flex;
   align-items: center;

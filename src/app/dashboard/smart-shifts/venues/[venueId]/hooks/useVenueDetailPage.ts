@@ -24,7 +24,7 @@ export const useVenueDetailPage = (venueId: string) => {
   };
 
   const handleNavigateToStaff = () => {
-    window.location.href = `/dashboard/staff?venueId=${venueId}`;
+    window.location.href = `/dashboard/smart-shifts/staff?venueId=${venueId}`;
   };
 
   return {

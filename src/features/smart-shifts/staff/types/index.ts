@@ -14,9 +14,18 @@ export const CONTRACT_TYPE_LABELS: Record<ContractType, string> = {
   [ContractType.INTERNSHIP]: 'Tirocinio',
 };
 
+export type PreferredShift = 'any' | 'morning' | 'afternoon' | 'evening' | 'night';
+
 export interface DayAvailability {
   available: boolean;
   preferredHours?: { start: string; end: string }[];
+  preferredShift?: PreferredShift;
+  reason?: string;
+}
+
+export interface SpecificDayOff {
+  date: string; // ISO date string
+  reason: string;
 }
 
 export interface Availability {
@@ -27,6 +36,13 @@ export interface Availability {
   friday?: DayAvailability;
   saturday?: DayAvailability;
   sunday?: DayAvailability;
+  specificDaysOff?: SpecificDayOff[];
+  preferences?: {
+    maxConsecutiveDays?: number;
+    preferredDaysOff?: string[];
+    avoidEarlyMornings?: boolean;
+    avoidLateNights?: boolean;
+  };
 }
 
 export interface ContractClauses {
@@ -53,6 +69,7 @@ export interface Staff {
   lastName?: string;
   email?: string;
   phone?: string;
+  personalToken?: string;
   contractType: ContractType;
   weeklyHours: number;
   hourlyRate: number;
@@ -82,8 +99,12 @@ export interface StaffFilters {
 }
 
 export interface CreateStaffRequest {
-  venueMemberId: string;
+  venueMemberId?: string;
   staffRole: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
   contractType: ContractType;
   weeklyHours: number;
   hourlyRate: number;
@@ -134,6 +155,14 @@ export const DAY_LABELS: Record<string, string> = {
   friday: 'Venerdì',
   saturday: 'Sabato',
   sunday: 'Domenica',
+};
+
+export const PREFERRED_SHIFT_LABELS: Record<PreferredShift, string> = {
+  any: 'Qualsiasi',
+  morning: 'Mattina (06:00-12:00)',
+  afternoon: 'Pomeriggio (12:00-18:00)',
+  evening: 'Sera (18:00-22:00)',
+  night: 'Notte (22:00-06:00)',
 };
 
 export type DayOfWeek = (typeof DAYS_OF_WEEK)[number];

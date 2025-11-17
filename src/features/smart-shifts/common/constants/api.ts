@@ -192,4 +192,16 @@ export const api = {
     costEstimateData: (venueId: string, startDate: string, endDate: string) =>
       `${BASE_URL}/smart-shifts/reports/${venueId}/cost-estimate/data?startDate=${startDate}&endDate=${endDate}`,
   },
+
+  contractAlerts: {
+    byVenue: (venueId: string, status?: string) =>
+      `${BASE_URL}/contract-alerts/venue/${venueId}${status ? `?status=${status}` : ''}`,
+    pendingCount: (venueId: string) =>
+      `${BASE_URL}/contract-alerts/venue/${venueId}/count`,
+    acknowledge: (alertId: string) =>
+      `${BASE_URL}/contract-alerts/${alertId}/acknowledge`,
+    resolve: (alertId: string) =>
+      `${BASE_URL}/contract-alerts/${alertId}/resolve`,
+    triggerCheck: `${BASE_URL}/contract-alerts/trigger-check`,
+  },
 } as const;

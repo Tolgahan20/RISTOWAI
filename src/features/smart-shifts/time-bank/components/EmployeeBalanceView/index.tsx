@@ -5,7 +5,6 @@ import { Calendar, TrendingUp, Clock, AlertCircle, RefreshCw } from 'react-feath
 import { useEmployeeBalance, useManualAdjustments, useRecalculateBalance } from '../../hooks/useTimeBank';
 import { LoadingState, ErrorState } from '@/components/dashboard/ui';
 import { formatDate } from '@/features/smart-shifts/common/utils/dateHelpers';
-import type { BankBucket } from '../../types';
 import styles from './employee-balance-view.module.css';
 
 interface EmployeeBalanceViewProps {
@@ -53,12 +52,12 @@ export const EmployeeBalanceView: React.FC<EmployeeBalanceViewProps> = ({
   }
 
   const hasVacationWarning =
-    balance.projYeVacationH < 0 ||
-    (balance.carryoverCapVacationHours && balance.projYeVacationH > balance.carryoverCapVacationHours);
+    (balance.projYeVacationH ?? 0) < 0 ||
+    (balance.carryoverCapVacationHours && (balance.projYeVacationH ?? 0) > balance.carryoverCapVacationHours);
 
   const hasRolWarning =
-    balance.projYeRolH < 0 ||
-    (balance.carryoverCapRolHours && balance.projYeRolH > balance.carryoverCapRolHours);
+    (balance.projYeRolH ?? 0) < 0 ||
+    (balance.carryoverCapRolHours && (balance.projYeRolH ?? 0) > balance.carryoverCapRolHours);
 
   return (
     <div className={styles.container}>
@@ -101,22 +100,22 @@ export const EmployeeBalanceView: React.FC<EmployeeBalanceViewProps> = ({
           </div>
           <div className={styles.cardBody}>
             <div className={styles.mainBalance}>
-              <span className={styles.balanceValue}>{balance.vacationBalanceH.toFixed(1)}</span>
+              <span className={styles.balanceValue}>{(balance.vacationBalanceH ?? 0).toFixed(1)}</span>
               <span className={styles.balanceUnit}>ore</span>
             </div>
             <div className={styles.balanceDetails}>
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Maturate:</span>
-                <span className={styles.detailValue}>{balance.vacationAccruedH.toFixed(1)} h</span>
+                <span className={styles.detailValue}>{(balance.vacationAccruedH ?? 0).toFixed(1)} h</span>
               </div>
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Fruite:</span>
-                <span className={styles.detailValue}>{balance.vacationTakenH.toFixed(1)} h</span>
+                <span className={styles.detailValue}>{(balance.vacationTakenH ?? 0).toFixed(1)} h</span>
               </div>
             </div>
             <div className={styles.projection}>
               <TrendingUp size={14} />
-              <span>Proiezione 31 Dic: {balance.projYeVacationH.toFixed(1)} h</span>
+              <span>Proiezione 31 Dic: {(balance.projYeVacationH ?? 0).toFixed(1)} h</span>
             </div>
             {hasVacationWarning && (
               <div className={styles.warning}>
@@ -141,22 +140,22 @@ export const EmployeeBalanceView: React.FC<EmployeeBalanceViewProps> = ({
           </div>
           <div className={styles.cardBody}>
             <div className={styles.mainBalance}>
-              <span className={styles.balanceValue}>{balance.rolBalanceH.toFixed(1)}</span>
+              <span className={styles.balanceValue}>{(balance.rolBalanceH ?? 0).toFixed(1)}</span>
               <span className={styles.balanceUnit}>ore</span>
             </div>
             <div className={styles.balanceDetails}>
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Maturate:</span>
-                <span className={styles.detailValue}>{balance.rolAccruedH.toFixed(1)} h</span>
+                <span className={styles.detailValue}>{(balance.rolAccruedH ?? 0).toFixed(1)} h</span>
               </div>
               <div className={styles.detailRow}>
                 <span className={styles.detailLabel}>Fruite:</span>
-                <span className={styles.detailValue}>{balance.rolTakenH.toFixed(1)} h</span>
+                <span className={styles.detailValue}>{(balance.rolTakenH ?? 0).toFixed(1)} h</span>
               </div>
             </div>
             <div className={styles.projection}>
               <TrendingUp size={14} />
-              <span>Proiezione 31 Dic: {balance.projYeRolH.toFixed(1)} h</span>
+              <span>Proiezione 31 Dic: {(balance.projYeRolH ?? 0).toFixed(1)} h</span>
             </div>
             {hasRolWarning && (
               <div className={styles.warning}>
@@ -181,11 +180,11 @@ export const EmployeeBalanceView: React.FC<EmployeeBalanceViewProps> = ({
           </div>
           <div className={styles.cardBody}>
             <div className={styles.mainBalance}>
-              <span className={styles.balanceValue}>{balance.bankBalanceH.toFixed(1)}</span>
+              <span className={styles.balanceValue}>{(balance.bankBalanceH ?? 0).toFixed(1)}</span>
               <span className={styles.balanceUnit}>ore</span>
             </div>
             <p className={styles.bankNote}>
-              Solo aggiustamenti manuali. Riconciliazione formale disponibile in versione futura.
+              Calcolato automaticamente dalle timbrature (ore lavorate - ore programmate) + aggiustamenti manuali.
             </p>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { Staff } from "../../staff/types";
+
 export enum VenueType {
   RESTAURANT = 'RESTAURANT',
   CAFE = 'CAFE',
@@ -25,6 +27,14 @@ export interface OpeningHours {
   sunday?: OpeningHoursDay;
 }
 
+export interface WhatsAppSettings {
+  enabled: boolean;
+  sendShiftAssignments?: boolean;
+  sendSchedulePublished?: boolean;
+  sendShiftChanges?: boolean;
+  managerPhone?: string;
+}
+
 export interface VenueSettings {
   minRestHours?: number;
   maxDailyHours?: number;
@@ -33,6 +43,7 @@ export interface VenueSettings {
   minShiftDuration?: number;
   maxShiftDuration?: number;
   minAdvanceBooking?: number;
+  whatsapp?: WhatsAppSettings;
 }
 
 export interface Venue {
@@ -47,7 +58,7 @@ export interface Venue {
   contactPhone?: string;
   openingHours?: OpeningHours;
   settings?: VenueSettings;
-  staff?: any[]; // Staff members when fetched with relations
+  staff?: Staff[]; // Staff members when fetched with relations
   createdAt: string;
   updatedAt: string;
 }

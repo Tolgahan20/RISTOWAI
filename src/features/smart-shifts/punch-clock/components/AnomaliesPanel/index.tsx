@@ -69,7 +69,7 @@ export const AnomaliesPanel: React.FC<AnomaliesPanelProps> = ({ venueId }) => {
               <div className={styles.anomalyHeader}>
                 <div className={styles.anomalyInfo}>
                   <div className={styles.anomalyStaff}>
-                    Staff ID: {anomaly.staffId}
+                    {anomaly.staffName || `Staff ID: ${anomaly.staffId}`}
                   </div>
                   <div className={styles.anomalyTimestamp}>
                     <Clock size={14} />

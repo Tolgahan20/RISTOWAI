@@ -63,10 +63,19 @@ export const StaffScheduleView: React.FC<StaffScheduleViewProps> = ({ staffId })
     return dates;
   };
 
+  // Deduplicate shifts (same startTime, endTime, phaseId, phaseName)
+  const deduplicatedShifts = schedule.upcomingShifts.reduce((acc, shift) => {
+    const key = `${shift.startTime}-${shift.endTime}-${shift.phaseId}-${shift.phaseName}`;
+    if (!acc.some(s => `${s.startTime}-${s.endTime}-${s.phaseId}-${s.phaseName}` === key)) {
+      acc.push(shift);
+    }
+    return acc;
+  }, [] as typeof schedule.upcomingShifts);
+
   // Group shifts by week and then by date
   const shiftsByWeek: Record<string, Record<string, typeof schedule.upcomingShifts>> = {};
   
-  schedule.upcomingShifts.forEach((shift) => {
+  deduplicatedShifts.forEach((shift) => {
     const date = shift.startTime.split('T')[0];
     const weekKey = getWeekKey(date);
     
@@ -101,7 +110,7 @@ export const StaffScheduleView: React.FC<StaffScheduleViewProps> = ({ staffId })
           <div className={styles.statsRow}>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Turni programmati</span>
-              <span className={styles.statValue}>{schedule.upcomingShifts.length}</span>
+              <span className={styles.statValue}>{deduplicatedShifts.length}</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Questa settimana</span>

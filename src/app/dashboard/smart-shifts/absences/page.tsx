@@ -1,34 +1,22 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { EmptyState, LoadingState } from '@/components/dashboard/ui';
 import { PageHeader } from '@/components/dashboard/layout';
 import { AbsencesList } from '@/features/smart-shifts/absences/components';
-import { useVenues } from '@/features/smart-shifts/venues/hooks';
-import { useVenueStore } from '@/stores/venueStore';
-import { useStaff } from '@/features/smart-shifts/staff/hooks';
+import { useAbsencesPage } from '@/features/smart-shifts/absences/hooks';
 import pageLayout from '@/styles/page-layout.module.css';
 import styles from './absences.module.css';
 
 export default function AbsencesPage() {
-  const { data: venues, isLoading: venuesLoading } = useVenues();
-  const { selectedVenueId, setSelectedVenueId } = useVenueStore();
-
-  // Fetch staff for the selected venue
-  const { data: staffData } = useStaff(selectedVenueId || '', 1, 1000); // Get all staff for selector
-
-  // Auto-select first venue if none selected
-  useEffect(() => {
-    if (!selectedVenueId && venues && venues.length > 0) {
-      setSelectedVenueId(venues[0].id);
-    }
-  }, [venues, selectedVenueId, setSelectedVenueId]);
-
-  // Transform staff data for the list
-  const staffList = staffData?.data.map((staff) => ({
-    id: staff.id,
-    name: `${staff.firstName} ${staff.lastName}`.trim() || 'Senza nome',
-  })) || [];
+  const {
+    venues,
+    venuesLoading,
+    selectedVenueId,
+    setSelectedVenueId,
+    staffList,
+    navigateToVenues,
+  } = useAbsencesPage();
 
   if (venuesLoading) {
     return <LoadingState message="Caricamento..." />;
@@ -44,7 +32,7 @@ export default function AbsencesPage() {
             description="Devi prima creare un locale per gestire le assenze."
             action={{
               label: 'Vai ai Locali',
-              onClick: () => window.location.href = '/dashboard/venues',
+              onClick: navigateToVenues,
             }}
           />
         </div>

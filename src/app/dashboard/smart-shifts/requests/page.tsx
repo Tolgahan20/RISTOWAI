@@ -1,48 +1,29 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { FileText } from 'react-feather';
 import { PageHeader } from '@/components/dashboard/layout';
 import { EmptyState } from '@/components/dashboard/ui';
 import { RequestsList, RequestModal } from '@/features/smart-shifts/requests/components';
-import { useVenues } from '@/features/smart-shifts/venues/hooks';
-import { useStaff } from '@/features/smart-shifts/staff/hooks';
-import { useVenueStore } from '@/stores/venueStore';
-import type { Request } from '@/features/smart-shifts/requests/types';
-import type { Staff } from '@/features/smart-shifts/staff/types';
+import { useRequestsPage } from '@/features/smart-shifts/requests/hooks';
 import pageLayout from '@/styles/page-layout.module.css';
 import styles from './requests.module.css';
 
 export default function RequestsPage() {
-  const { data: venues = [], isLoading: venuesLoading } = useVenues();
-  const { selectedVenueId, setSelectedVenueId } = useVenueStore();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingRequest, setEditingRequest] = useState<Request | undefined>();
-
-  // Auto-select first venue if none selected
-  React.useEffect(() => {
-    if (venues.length > 0 && !selectedVenueId) {
-      setSelectedVenueId(venues[0].id);
-    }
-  }, [venues, selectedVenueId, setSelectedVenueId]);
-
-  const { data: staffResponse } = useStaff(selectedVenueId || '');
-
-  const handleOpenModal = (request?: Request) => {
-    setEditingRequest(request);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setEditingRequest(undefined);
-    setIsModalOpen(false);
-  };
-
-  const staff = staffResponse?.data || [];
-  const staffList = staff.map((s: Staff) => ({
-    id: s.id,
-    name: `${s.firstName} ${s.lastName}`,
-  }));
+  // All page logic is now in the custom hook
+  const {
+    venues,
+    venuesLoading,
+    selectedVenueId,
+    setSelectedVenueId,
+    selectedVenue,
+    staffList,
+    isModalOpen,
+    editingRequest,
+    handleOpenModal,
+    handleCloseModal,
+    navigateToVenues,
+  } = useRequestsPage();
 
   if (venuesLoading) {
     return (
@@ -62,9 +43,7 @@ export default function RequestsPage() {
             description="Crea prima un locale per gestire le richieste del personale."
             action={{
               label: 'Vai ai Locali',
-              onClick: () => {
-                window.location.href = '/dashboard/venues';
-              },
+              onClick: navigateToVenues,
             }}
           />
         </div>
@@ -92,8 +71,6 @@ export default function RequestsPage() {
       </div>
     );
   }
-
-  const selectedVenue = venues.find((v) => v.id === selectedVenueId);
 
   return (
     <div className={pageLayout.pageContainer}>

@@ -140,5 +140,6 @@ export interface OnboardingCompleteResponse {
   venue: Venue;
   phases: WorkPhase[];
   staff: StaffMember[];
+  accessToken: string;
 }
 

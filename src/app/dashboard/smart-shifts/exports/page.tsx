@@ -35,7 +35,7 @@ export default function ExportsPage() {
             description="Devi prima creare un locale per gestire gli export."
             action={{
               label: 'Vai ai Locali',
-              onClick: () => (window.location.href = '/dashboard/venues'),
+              onClick: () => (window.location.href = '/dashboard/smart-shifts/venues'),
             }}
           />
         </div>

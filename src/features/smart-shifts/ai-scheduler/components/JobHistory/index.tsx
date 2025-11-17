@@ -4,10 +4,14 @@ import { Button } from '@/components/dashboard/ui/Button';
 import { Select } from '@/components/dashboard/ui/Select';
 import { LoadingState, ErrorState } from '@/components/dashboard/ui';
 import { useJobHistory } from '../../hooks/useJobHistory';
-import { useVenues } from '../../../venues/hooks';
+import { usePublishSchedule } from '../../hooks/usePublishSchedule';
+import { useVenues, useVenueDetail } from '../../../venues/hooks';
+import { useRestaurantId } from '@/features/auth/hooks/useRestaurantId';
+import { useNotificationStore } from '../../../common/stores/notification';
+import { AI_SCHEDULER_MESSAGES } from '../../../common/constants/messages';
 import { ScheduleResults } from '../ScheduleResults';
 import { JobStatus, ScheduleMode } from '../../types';
-import type { ScheduleResponse, JobStatusResponse } from '../../types';
+import type { ScheduleResponse, JobStatusResponse, PublishScheduleRequest, ShiftToPublish } from '../../types';
 import styles from './job-history.module.css';
 
 interface JobHistoryFilters {
@@ -19,11 +23,35 @@ interface JobHistoryFilters {
 }
 
 export const JobHistory: React.FC = () => {
+  const restaurantId = useRestaurantId() || '';
+  const { showNotification } = useNotificationStore();
   const [filters, setFilters] = useState<JobHistoryFilters>({ limit: 20 });
   const [showFilters, setShowFilters] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState<ScheduleResponse | null>(null);
+  const [selectedJob, setSelectedJob] = useState<JobStatusResponse | null>(null);
   const { data: venues = [] } = useVenues();
   const { data: jobs, isLoading, isError, refetch } = useJobHistory(filters);
+
+  // Get venue details for WhatsApp settings
+  const venueId = selectedJob?.request?.venueId || '';
+  const { data: venue } = useVenueDetail(restaurantId, venueId);
+  const whatsAppEnabled = venue?.settings?.whatsapp?.enabled || false;
+
+  const { publishSchedule, isPublishing } = usePublishSchedule({
+    onSuccess: (data) => {
+      showNotification({
+        type: 'success',
+        message: AI_SCHEDULER_MESSAGES.publishSuccess,
+      });
+      window.location.href = `/dashboard/smart-shifts/schedules/${venueId}/${data.scheduleId}`;
+    },
+    onError: (error) => {
+      showNotification({
+        type: 'error',
+        message: `${AI_SCHEDULER_MESSAGES.publishError}: ${error}`,
+      });
+    },
+  });
 
   const handleFilterChange = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value || undefined }));
@@ -36,16 +64,45 @@ export const JobHistory: React.FC = () => {
   const handleViewSchedule = (job: JobStatusResponse) => {
     if (job.result) {
       setSelectedSchedule(job.result);
+      setSelectedJob(job);
     }
+  };
+
+  const handlePublish = (sendWhatsApp: boolean = false) => {
+    if (!selectedSchedule || !selectedJob?.request) return;
+
+    // Transform shifts to publish format
+    const shiftsToPublish: ShiftToPublish[] = selectedSchedule.shifts.map((shift) => ({
+      staffId: shift.staffId,
+      phaseId: shift.phaseId,
+      startTime: shift.startTime,
+      endTime: shift.endTime,
+    }));
+
+    const publishRequest: PublishScheduleRequest = {
+      venueId: selectedJob.request.venueId,
+      startDate: selectedJob.request.dateRange.startDate,
+      endDate: selectedJob.request.dateRange.endDate,
+      shifts: shiftsToPublish,
+      aiReasoning: selectedSchedule.metadata.aiReasoning,
+      aiMode: selectedSchedule.metadata.mode,
+      sendWhatsApp,
+    };
+
+    publishSchedule(publishRequest);
   };
 
   if (selectedSchedule) {
     return (
       <ScheduleResults
         schedule={selectedSchedule}
-        onBack={() => setSelectedSchedule(null)}
-        onPublish={() => {}}
-        isPublishing={false}
+        onBack={() => {
+          setSelectedSchedule(null);
+          setSelectedJob(null);
+        }}
+        onPublish={handlePublish}
+        isPublishing={isPublishing}
+        whatsAppEnabled={whatsAppEnabled}
       />
     );
   }

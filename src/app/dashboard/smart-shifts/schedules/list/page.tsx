@@ -4,7 +4,7 @@ import { Calendar, Clock, Users, Eye } from 'react-feather';
 import { Button } from '@/components/dashboard/ui/Button';
 import { LoadingState, ErrorState, EmptyState } from '@/components/dashboard/ui';
 import { Select } from '@/components/dashboard/ui/Select';
-import { useSchedulesList } from './hooks/useSchedulesList';
+import { useSchedulesList } from '@/features/smart-shifts/schedules/hooks';
 import styles from './schedules-list.module.css';
 
 export default function SchedulesListPage() {

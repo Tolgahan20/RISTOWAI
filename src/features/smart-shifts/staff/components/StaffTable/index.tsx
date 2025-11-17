@@ -1,5 +1,5 @@
-import React from 'react';
-import { Edit2, Trash2, Calendar, UserPlus } from 'react-feather';
+import React, { useState } from 'react';
+import { Edit2, Trash2, Calendar, UserPlus, Link, Check } from 'react-feather';
 import { 
   Button, 
   LoadingState, 
@@ -25,6 +25,8 @@ interface StaffTableProps {
 }
 
 export const StaffTable: React.FC<StaffTableProps> = ({ venueId, onEdit, onAdd }) => {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
   const {
     page,
     pageSize,
@@ -49,6 +51,21 @@ export const StaffTable: React.FC<StaffTableProps> = ({ venueId, onEdit, onAdd }
     getFullName,
     isActive,
   } = useStaffTable({ venueId });
+
+  const handleCopyMagicLink = (staff: Staff) => {
+    if (!staff.personalToken) {
+      alert('Token non disponibile per questo dipendente');
+      return;
+    }
+
+    const link = `${window.location.origin}/s/${staff.personalToken}/schedule`;
+    navigator.clipboard.writeText(link).then(() => {
+      setCopiedId(staff.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }).catch(() => {
+      alert('Errore nella copia del link');
+    });
+  };
 
   // Define table columns
   const columns: Column<Staff>[] = [
@@ -99,12 +116,53 @@ export const StaffTable: React.FC<StaffTableProps> = ({ venueId, onEdit, onAdd }
       ),
     },
     {
+      key: 'preferences',
+      label: 'Preferenze',
+      render: (staff) => {
+        if (!staff.availability) {
+          return <span className={styles.noPreferences}>-</span>;
+        }
+
+        const hasSpecificDaysOff = staff.availability.specificDaysOff?.length && staff.availability.specificDaysOff.length > 0;
+        const hasPreferredShifts = Object.keys(staff.availability).some((key) => {
+          if (key === 'specificDaysOff' || key === 'preferences') return false;
+          const dayData = staff.availability?.[key as keyof typeof staff.availability];
+          return (
+            dayData && 
+            typeof dayData === 'object' && 
+            'preferredShift' in dayData &&
+            dayData.preferredShift !== 'any'
+          );
+        });
+        
+        if (!hasSpecificDaysOff && !hasPreferredShifts) {
+          return <span className={styles.noPreferences}>-</span>;
+        }
+        
+        return (
+          <span className={styles.hasPreferences} title="Ha preferenze impostate">
+            ✓ Impostate
+          </span>
+        );
+      },
+    },
+    {
       key: 'actions',
       label: 'Azioni',
       align: 'center',
-      width: '140px',
+      width: '180px',
       render: (staff) => (
         <div className={styles.actions}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCopyMagicLink(staff);
+            }}
+            className={`${styles.actionButton} ${copiedId === staff.id ? styles.copiedButton : ''}`}
+            title={copiedId === staff.id ? "Link Copiato!" : "Copia Link Personale"}
+          >
+            {copiedId === staff.id ? <Check size={16} /> : <Link size={16} />}
+          </button>
           <button
             onClick={(e) => {
               e.stopPropagation();

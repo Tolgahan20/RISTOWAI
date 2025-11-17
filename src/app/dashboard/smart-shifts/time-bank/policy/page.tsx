@@ -37,7 +37,7 @@ export default function TimeBankPolicyPage() {
         selectedVenueId={selectedVenueId}
         onVenueChange={setSelectedVenueId}
         showBackButton
-        backButtonUrl="/dashboard/time-bank"
+        backButtonUrl="/dashboard/smart-shifts/time-bank"
       />
 
       <BalancePolicyForm venueId={selectedVenueId} />

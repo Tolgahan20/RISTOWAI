@@ -13,6 +13,10 @@ export const useStaffForm = (venueId: string, staff?: Staff) => {
   const [formData, setFormData] = useState<Partial<CreateStaffRequest>>({
     venueMemberId: staff?.venueMemberId || '',
     staffRole: staff?.staffRole || '',
+    firstName: staff?.firstName || '',
+    lastName: staff?.lastName || '',
+    email: staff?.email || '',
+    phone: staff?.phone || '',
     contractType: staff?.contractType || 'FULL_TIME' as ContractType,
     weeklyHours: staff?.weeklyHours || 40,
     hourlyRate: staff?.hourlyRate || 0,
@@ -86,6 +90,20 @@ export const useStaffForm = (venueId: string, staff?: Staff) => {
       showNotification({ message: 'La data di assunzione è obbligatoria', type: 'error' });
       return;
     }
+    
+    // Validate endDate is after hireDate
+    if (formData.endDate && formData.hireDate) {
+      const hireDate = new Date(formData.hireDate);
+      const endDate = new Date(formData.endDate);
+      
+      if (endDate <= hireDate) {
+        showNotification({ 
+          message: 'La data di fine contratto deve essere successiva alla data di assunzione', 
+          type: 'error' 
+        });
+        return;
+      }
+    }
 
     if (isEditMode) {
       // For update, exclude venueMemberId and ensure numbers are properly typed
@@ -104,11 +122,15 @@ export const useStaffForm = (venueId: string, staff?: Staff) => {
       };
       await updateMutation.mutateAsync(updateData);
     } else {
-      // For create, venueMemberId is required by the backend
-      // Ensure numbers are properly typed
+      // For create, ensure numbers are properly typed
+      // venueMemberId can be undefined (backend will handle it)
       const createData: CreateStaffRequest = {
         ...formData,
-        venueMemberId: formData.venueMemberId || 'temp-member-id',
+        venueMemberId: formData.venueMemberId || undefined,
+        firstName: formData.firstName || undefined,
+        lastName: formData.lastName || undefined,
+        email: formData.email || undefined,
+        phone: formData.phone || undefined,
         weeklyHours: Number(formData.weeklyHours),
         hourlyRate: Number(formData.hourlyRate),
       } as CreateStaffRequest;

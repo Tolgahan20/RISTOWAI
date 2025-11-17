@@ -15,6 +15,7 @@ export enum TimeEventSource {
 export interface TimeEvent {
   id: string;
   staffId: string;
+  staffName?: string;
   venueId: string;
   shiftId?: string;
   timestamp: string;

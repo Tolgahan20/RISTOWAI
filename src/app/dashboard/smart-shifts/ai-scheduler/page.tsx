@@ -1,19 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import { PageHeader } from '@/components/dashboard/layout';
 import { VenueSelector } from '@/features/smart-shifts/ai-scheduler/components/VenueSelector';
 import { ScheduleGenerator } from '@/features/smart-shifts/ai-scheduler/components/ScheduleGenerator';
 import { JobHistory } from '@/features/smart-shifts/ai-scheduler/components/JobHistory';
-import { useVenueSelection } from '@/features/smart-shifts/ai-scheduler/hooks/useVenueSelection';
+import { useVenueSelection, useAISchedulerPage } from '@/features/smart-shifts/ai-scheduler/hooks';
 import pageLayout from '@/styles/page-layout.module.css';
-import styles from './ai-scheduler.module.css';
-
-type Tab = 'generator' | 'history';
+import styles from './page.module.css';
 
 export default function AISchedulerPage() {
   const { venues, selectedVenueId, setSelectedVenueId, isLoading } = useVenueSelection();
-  const [activeTab, setActiveTab] = useState<Tab>('generator');
+  const { activeTab, setActiveTab, subtitle } = useAISchedulerPage();
 
   // Show venue selector if no venue is selected
   if (!selectedVenueId) {
@@ -26,10 +23,6 @@ export default function AISchedulerPage() {
       />
     );
   }
-
-  const subtitle = activeTab === 'generator' 
-    ? 'Genera automaticamente i turni con l\'intelligenza artificiale'
-    : 'Visualizza lo storico delle generazioni di turni';
 
   return (
     <div className={pageLayout.pageContainer}>

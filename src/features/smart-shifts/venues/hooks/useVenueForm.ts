@@ -4,7 +4,7 @@ import { venuesApi } from '../api';
 import { useRestaurantId } from '../../../auth/hooks';
 import { useNotificationStore } from '../../common/stores/notification';
 import { VENUE_MESSAGES } from '../../common/constants/messages';
-import type { CreateVenueRequest, UpdateVenueRequest, Venue, VenueType, OpeningHours, VenueSettings } from '../types';
+import type { CreateVenueRequest, UpdateVenueRequest, Venue, VenueType, OpeningHours, VenueSettings, WhatsAppSettings } from '../types';
 
 interface VenueFormData {
   name: string;
@@ -95,6 +95,19 @@ export const useVenueForm = (initialVenue?: Venue) => {
     }));
   }, []);
 
+  const updateWhatsAppSettings = useCallback(<K extends keyof WhatsAppSettings>(field: K, value: WhatsAppSettings[K]) => {
+    setFormData((prev) => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        whatsapp: {
+          ...prev.settings.whatsapp,
+          [field]: value,
+        } as WhatsAppSettings,
+      },
+    }));
+  }, []);
+
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
@@ -128,6 +141,7 @@ export const useVenueForm = (initialVenue?: Venue) => {
     updateOpeningHours,
     removeOpeningHours,
     updateSettings,
+    updateWhatsAppSettings,
     handleSubmit,
     isSubmitting: createMutation.isPending || updateMutation.isPending,
     isEditing: !!initialVenue,

@@ -1,0 +1,9 @@
+.layout {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.main {
+  padding-top: 70px; /* Space for fixed navbar */
+}
+

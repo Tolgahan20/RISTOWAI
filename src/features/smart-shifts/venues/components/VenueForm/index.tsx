@@ -31,6 +31,7 @@ export const VenueForm: React.FC<VenueFormProps> = ({ venue, onSuccess, onCancel
     updateOpeningHours,
     removeOpeningHours,
     updateSettings,
+    updateWhatsAppSettings,
     handleSubmit,
     isSubmitting,
     isEditing,
@@ -230,6 +231,83 @@ export const VenueForm: React.FC<VenueFormProps> = ({ venue, onSuccess, onCancel
             <span className={styles.fieldHelp}>Consenti ai dipendenti di timbrare entrata/uscita</span>
           </div>
         </div>
+      </div>
+
+      <div className={styles.section}>
+        <h3 className={styles.sectionTitle}>Notifiche WhatsApp</h3>
+        <p className={styles.sectionDescription}>
+          Configura le notifiche WhatsApp per il personale
+        </p>
+
+        <div className={styles.field}>
+          <label className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              checked={formData.settings.whatsapp?.enabled || false}
+              onChange={(e) => updateWhatsAppSettings('enabled', e.target.checked)}
+              className={styles.checkbox}
+            />
+            <span>Abilita Notifiche WhatsApp</span>
+          </label>
+          <span className={styles.fieldHelp}>Invia notifiche automatiche al personale via WhatsApp</span>
+        </div>
+
+        {formData.settings.whatsapp?.enabled && (
+          <>
+            <div className={styles.field}>
+              <label htmlFor="managerPhone" className={styles.label}>
+                Numero Manager
+              </label>
+              <Input
+                id="managerPhone"
+                type="tel"
+                value={formData.settings.whatsapp.managerPhone || ''}
+                onChange={(e) => updateWhatsAppSettings('managerPhone', e.target.value)}
+                placeholder="+39 320 1234567"
+              />
+              <span className={styles.fieldHelp}>Numero WhatsApp per ricevere notifiche di riepilogo</span>
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={formData.settings.whatsapp.sendSchedulePublished || false}
+                  onChange={(e) => updateWhatsAppSettings('sendSchedulePublished', e.target.checked)}
+                  className={styles.checkbox}
+                />
+                <span>Notifica Pubblicazione Turni</span>
+              </label>
+              <span className={styles.fieldHelp}>Invia notifica quando un nuovo turno viene pubblicato</span>
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={formData.settings.whatsapp.sendShiftAssignments || false}
+                  onChange={(e) => updateWhatsAppSettings('sendShiftAssignments', e.target.checked)}
+                  className={styles.checkbox}
+                />
+                <span>Notifica Assegnazione Turno</span>
+              </label>
+              <span className={styles.fieldHelp}>Invia notifica quando viene assegnato un turno specifico</span>
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={formData.settings.whatsapp.sendShiftChanges || false}
+                  onChange={(e) => updateWhatsAppSettings('sendShiftChanges', e.target.checked)}
+                  className={styles.checkbox}
+                />
+                <span>Notifica Modifiche Turno</span>
+              </label>
+              <span className={styles.fieldHelp}>Invia notifica quando un turno viene modificato</span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className={styles.actions}>

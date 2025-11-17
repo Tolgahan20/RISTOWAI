@@ -94,7 +94,7 @@ export default function SchedulesPage() {
         actions={
           <Button
             variant="secondary"
-            onClick={() => window.location.href = '/dashboard/schedules/list'}
+            onClick={() => window.location.href = '/dashboard/smart-shifts/schedules/list'}
           >
             <Calendar size={16} />
             Tutti i Turni
@@ -154,7 +154,7 @@ export default function SchedulesPage() {
               description={SCHEDULES_MESSAGES.empty.description}
               action={{
                 label: SCHEDULES_MESSAGES.empty.action,
-                onClick: () => window.location.href = '/dashboard/ai-scheduler',
+                onClick: () => window.location.href = '/dashboard/smart-shifts/ai-scheduler',
               }}
             />
           )}

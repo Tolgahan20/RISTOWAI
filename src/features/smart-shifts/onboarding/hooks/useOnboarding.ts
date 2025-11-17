@@ -140,15 +140,20 @@ export const useOnboarding = () => {
   // Complete onboarding
   const completeMutation = useMutation({
     mutationFn: onboardingApi.completeOnboarding,
-    onSuccess: () => {
-      success('Onboarding completato! Reindirizziamo per aggiornare la tua sessione...');
+    onSuccess: (data) => {
+      // Update the access token with the new one that includes restaurantId
+      const refreshToken = tokenService.getRefreshToken();
+      if (data.accessToken && refreshToken) {
+        tokenService.setTokens(data.accessToken, refreshToken);
+      }
+      
+      success('Onboarding completato! Benvenuto nella tua dashboard.');
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
       
-      // Clear tokens and redirect to login to get fresh token with restaurantId
+      // Redirect to dashboard
       setTimeout(() => {
-        tokenService.removeTokens();
-        void router.push('/login');
-      }, 2000);
+        void router.push('/dashboard/smart-shifts');
+      }, 1500);
     },
     onError: (err: AxiosError<{ message: string }>) => {
       const message =

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNotificationStore } from '@/features/smart-shifts/common/stores/notification';
+import { useRestaurantId } from '@/features/auth/hooks/useRestaurantId';
+import { useVenueDetail } from '@/features/smart-shifts/venues/hooks';
 import { useScheduleForm } from './useScheduleForm';
 import { usePublishSchedule } from './usePublishSchedule';
 import { useScheduleJob } from './useScheduleJob';
@@ -17,9 +19,13 @@ interface UseScheduleGeneratorProps {
 }
 
 export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
+  const restaurantId = useRestaurantId() || '';
+  const { data: venue } = useVenueDetail(restaurantId, venueId);
   const { showNotification } = useNotificationStore();
   const [showResults, setShowResults] = useState(false);
   const [schedule, setSchedule] = useState<ScheduleResponse | null>(null);
+  
+  const whatsAppEnabled = venue?.settings?.whatsapp?.enabled || false;
 
   const { startJob, isStarting, isPolling, jobStatus } =
     useScheduleJob({
@@ -45,7 +51,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
         type: 'success',
         message: AI_SCHEDULER_MESSAGES.publishSuccess,
       });
-      window.location.href = `/dashboard/schedules?scheduleId=${data.scheduleId}`;
+      window.location.href = `/dashboard/smart-shifts/schedules/${venueId}/${data.scheduleId}`;
     },
     onError: (error) => {
       showNotification({
@@ -62,7 +68,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
     },
   );
 
-  const handlePublish = () => {
+  const handlePublish = (sendWhatsApp: boolean = false) => {
     if (!schedule) return;
 
     // Transform shifts to publish format
@@ -81,6 +87,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
       shifts: shiftsToPublish,
       aiReasoning: schedule.metadata.aiReasoning,
       aiMode: schedule.metadata.mode,
+      sendWhatsApp,
     };
 
     publishSchedule(publishRequest);
@@ -129,6 +136,7 @@ export function useScheduleGenerator({ venueId }: UseScheduleGeneratorProps) {
     showResults,
     schedule,
     formData,
+    whatsAppEnabled,
     
     // Loading states
     isStarting,

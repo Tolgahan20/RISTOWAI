@@ -95,3 +95,38 @@ export function toDateString(date: Date): string {
   return date.toISOString().split('T')[0];
 }
 
+/**
+ * Format full date (long format with weekday)
+ */
+export function formatFullDate(dateInput: Date | string): string {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  return date.toLocaleDateString('it-IT', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+/**
+ * Format date (short format with year)
+ */
+export function formatDateWithYear(dateInput: Date | string): string {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  return date.toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+/**
+ * Calculate duration between two timestamps in hours
+ */
+export function calculateDuration(start: Date | string, end: Date | string): string {
+  const startTime = typeof start === 'string' ? new Date(start) : start;
+  const endTime = typeof end === 'string' ? new Date(end) : end;
+  const hours = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
+  return hours.toFixed(1);
+}
+

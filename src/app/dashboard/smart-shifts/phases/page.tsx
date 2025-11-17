@@ -3,7 +3,7 @@
 import { PhasesList } from '@/features/smart-shifts/phases/components';
 import { EmptyState } from '@/components/dashboard/ui';
 import { PageHeader } from '@/components/dashboard/layout';
-import { usePhasesManagement } from './hooks/usePhasesManagement';
+import { usePhasesManagement } from '@/features/smart-shifts/phases/hooks';
 import pageLayout from '@/styles/page-layout.module.css';
 
 export default function PhasesPage() {

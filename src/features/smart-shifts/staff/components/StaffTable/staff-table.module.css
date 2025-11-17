@@ -75,6 +75,29 @@
   color: #991B1B;
 }
 
+/* Preferences */
+.noPreferences {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.hasPreferences {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.copiedButton {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+  color: var(--pure-white) !important;
+}
+
 /* Actions */
 .actions {
   display: flex;

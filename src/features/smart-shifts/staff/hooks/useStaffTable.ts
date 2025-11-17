@@ -51,7 +51,7 @@ export function useStaffTable({ venueId }: UseStaffTableProps) {
   };
 
   const handleViewSchedule = (staffId: string) => {
-    window.location.href = `/dashboard/staff/${staffId}/schedule`;
+    window.location.href = `/dashboard/smart-shifts/staff/${staffId}/schedule`;
   };
 
   const getFullName = (staff: Staff) => {

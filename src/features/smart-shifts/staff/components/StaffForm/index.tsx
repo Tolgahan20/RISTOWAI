@@ -36,6 +36,54 @@ export const StaffForm: React.FC<StaffFormProps> = ({ venueId, staff, onSuccess,
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
+      {/* Personal Information */}
+      {!isEditMode && (
+        <div className={styles.section}>
+          <h3 className={styles.sectionTitle}>Informazioni Personali</h3>
+          <div className={styles.grid}>
+            <div className={styles.field}>
+              <label className={styles.label}>Nome</label>
+              <Input
+                type="text"
+                value={formData.firstName || ''}
+                onChange={(e) => updateField('firstName', e.target.value)}
+                placeholder="Marco"
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.label}>Cognome</label>
+              <Input
+                type="text"
+                value={formData.lastName || ''}
+                onChange={(e) => updateField('lastName', e.target.value)}
+                placeholder="Rossi"
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.label}>Email</label>
+              <Input
+                type="email"
+                value={formData.email || ''}
+                onChange={(e) => updateField('email', e.target.value)}
+                placeholder="marco.rossi@example.com"
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.label}>Telefono</label>
+              <Input
+                type="tel"
+                value={formData.phone || ''}
+                onChange={(e) => updateField('phone', e.target.value)}
+                placeholder="+39 320 1234567"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Personal Information Note */}
       {isEditMode && staff && (
         <div className={styles.infoNote}>
@@ -49,7 +97,7 @@ export const StaffForm: React.FC<StaffFormProps> = ({ venueId, staff, onSuccess,
         </div>
       )}
 
-      {/* Personal Information */}
+      {/* Fiscal Information */}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Informazioni Fiscali</h3>
         <div className={styles.grid}>

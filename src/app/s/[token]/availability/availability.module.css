@@ -1,0 +1,466 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg) 100px;
+}
+
+/* Header */
+.header {
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--pure-black);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+/* Section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--pure-black);
+}
+
+.sectionHint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+/* Days Grid */
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+@media (min-width: 1024px) {
+  .daysGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.dayCard {
+  background: var(--pure-white);
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-lg);
+  transition: all 0.2s;
+  overflow: hidden;
+}
+
+.dayCard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dayCardDisabled {
+  background: #f9fafb;
+  border-color: #f3f4f6;
+}
+
+.dayCardHeader {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dayCardDisabled .dayCardHeader {
+  border-bottom: none;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSwitch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  background: #d1d5db;
+  border-radius: 12px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.toggleSwitch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--pure-white);
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggleInput:checked + .toggleSwitch {
+  background: var(--pure-black);
+}
+
+.toggleInput:checked + .toggleSwitch::before {
+  transform: translateX(18px);
+}
+
+.dayName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--pure-black);
+}
+
+.dayCardDisabled .dayName {
+  color: #9ca3af;
+}
+
+.dayCardBody {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Form Group */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.input,
+.select {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  background: var(--pure-white);
+  color: var(--pure-black);
+  transition: all 0.2s;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--pure-black);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+/* Add Card */
+.addCard {
+  background: var(--pure-white);
+  border: 2px dashed #d1d5db;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.addForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: var(--spacing-sm);
+  align-items: end;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 8px var(--spacing-lg);
+  background: var(--pure-black);
+  color: var(--pure-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  height: 38px;
+}
+
+.addBtn:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+.addBtn:active {
+  transform: translateY(0);
+}
+
+/* Days Off List */
+.daysOffList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.dayOffCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--pure-white);
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.dayOffCard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dayOffIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #f3f4f6;
+  border-radius: var(--radius-md);
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.dayOffContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dayOffDate {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--pure-black);
+  text-transform: capitalize;
+}
+
+.dayOffReason {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  color: #6b7280;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.removeBtn:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+/* Fixed Footer */
+.fixedFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--pure-white);
+  border-top: 1px solid #e5e7eb;
+  padding: var(--spacing-md) var(--spacing-lg);
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.footerContent {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.saveBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 10px var(--spacing-2xl);
+  background: var(--pure-black);
+  color: var(--pure-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saveBtn:hover:not(:disabled) {
+  background: #1f2937;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.saveBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading/Error States */
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--pure-black);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingState p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.errorState h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+.errorState p {
+  margin: var(--spacing-sm) 0 0 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .daysGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-lg) var(--spacing-md) 90px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+  }
+
+  .daysGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .addForm {
+    grid-template-columns: 1fr;
+  }
+
+  .addBtn {
+    width: 100%;
+  }
+
+  .daysOffList {
+    grid-template-columns: 1fr;
+  }
+
+  .fixedFooter {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .footerContent {
+    width: 100%;
+  }
+
+  .saveBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

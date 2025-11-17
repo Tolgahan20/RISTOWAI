@@ -36,7 +36,7 @@ export default function StaffPage() {
             icon={<MapPin size={64} />}
             title="Nessun locale disponibile"
             description="Prima di poter gestire il personale, devi creare almeno un locale per il tuo ristorante."
-            action={{ label: 'Crea il tuo primo locale', onClick: () => window.location.href = '/dashboard/venues' }}
+            action={{ label: 'Crea il tuo primo locale', onClick: () => window.location.href = '/dashboard/smart-shifts/venues' }}
           />
         </div>
       </div>

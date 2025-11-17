@@ -21,6 +21,12 @@ export const useWorkPhasesStep = ({
     roleRequirements: [],
   });
 
+  const formatTimeToHHmm = (time: string): string => {
+    // Ensure time is in HH:mm format (remove seconds if present)
+    if (!time) return time;
+    return time.substring(0, 5);
+  };
+
   const handleAddPhase = () => {
     if (!isValidWorkPhase(editingPhase)) {
       return;
@@ -28,8 +34,8 @@ export const useWorkPhasesStep = ({
 
     const newPhase: WorkPhase = {
       name: editingPhase.name,
-      startTime: editingPhase.startTime,
-      endTime: editingPhase.endTime,
+      startTime: formatTimeToHHmm(editingPhase.startTime!),
+      endTime: formatTimeToHHmm(editingPhase.endTime!),
       type: editingPhase.type,
       roleRequirements: [],
     };
@@ -64,7 +70,15 @@ export const useWorkPhasesStep = ({
     if (phasesToSave.length === 0) {
       return;
     }
-    await onSave({ phases: phasesToSave });
+    
+    // Format all times to HH:mm before saving
+    const formattedPhases = phasesToSave.map((phase) => ({
+      ...phase,
+      startTime: formatTimeToHHmm(phase.startTime),
+      endTime: formatTimeToHHmm(phase.endTime),
+    }));
+    
+    await onSave({ phases: formattedPhases });
   };
 
   return {

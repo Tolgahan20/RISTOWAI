@@ -1,28 +1,30 @@
 'use client';
 
-import { useState } from 'react';
 import { PageHeader } from '@/components/dashboard/layout';
 import { VenueSelector as VenueSelectorComponent, Select, EmptyState } from '@/components/dashboard/ui';
 import { useVenueSelection } from '@/features/smart-shifts/ai-scheduler/hooks/useVenueSelection';
-import { useStaff } from '@/features/smart-shifts/staff/hooks/useStaff';
 import {
   PunchClockWidget,
   AnomaliesPanel,
   TimeEventsList,
 } from '@/features/smart-shifts/punch-clock';
+import { usePunchClockPage } from '@/features/smart-shifts/punch-clock/hooks';
 import pageLayout from '@/styles/page-layout.module.css';
 import styles from './punch-clock.module.css';
 
-type Tab = 'clock' | 'history' | 'anomalies';
-
 export default function PunchClockPage() {
   const { venues, selectedVenueId, setSelectedVenueId } = useVenueSelection();
-  const [activeTab, setActiveTab] = useState<Tab>('anomalies'); // Default to anomalies for admins
-  const [selectedStaffId, setSelectedStaffId] = useState<string>('');
-  
-  // Fetch staff list for the selected venue (for admin staff selection)
-  const { data: staffData } = useStaff(selectedVenueId || '', 1, 100);
-  const staffList = staffData?.data || [];
+
+  // All page logic is now in the custom hook
+  const {
+    activeTab,
+    setActiveTab,
+    selectedStaffId,
+    setSelectedStaffId,
+    staffList,
+    getSubtitle,
+    getFullName,
+  } = usePunchClockPage(selectedVenueId);
 
   // Show venue selector if no venue is selected
   if (!selectedVenueId) {
@@ -34,26 +36,6 @@ export default function PunchClockPage() {
       />
     );
   }
-
-  const getSubtitle = () => {
-    switch (activeTab) {
-      case 'clock':
-        return 'Timbra entrata e uscita';
-      case 'history':
-        return 'Visualizza la cronologia delle timbrature';
-      case 'anomalies':
-        return 'Gestisci le anomalie delle timbrature';
-      default:
-        return 'Gestione timbrature';
-    }
-  };
-
-  const getFullName = (staff: typeof staffList[0]) => {
-    if (staff.firstName && staff.lastName) {
-      return `${staff.firstName} ${staff.lastName}`;
-    }
-    return staff.email || 'N/A';
-  };
 
   return (
     <div className={pageLayout.pageContainer}>

@@ -16,6 +16,7 @@ export function ScheduleGenerator({ venueId }: ScheduleGeneratorProps) {
     isStarting,
     isPolling,
     isPublishing,
+    whatsAppEnabled,
     handleSubmitWithData,
     handlePublish,
     handleBack,
@@ -28,6 +29,7 @@ export function ScheduleGenerator({ venueId }: ScheduleGeneratorProps) {
         onBack={handleBack}
         onPublish={handlePublish}
         isPublishing={isPublishing}
+        whatsAppEnabled={whatsAppEnabled}
       />
     );
   }

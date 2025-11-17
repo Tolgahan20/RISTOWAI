@@ -6,7 +6,14 @@
   gap: var(--spacing-xl);
 }
 
+.toolbar {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
 .staffSelector {
+  flex: 1;
   background: var(--pure-white);
   padding: var(--spacing-md);
   border-radius: 12px;
@@ -23,7 +30,37 @@
   white-space: nowrap;
 }
 
+.policyButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--pure-white);
+  border: 1px solid var(--background-gray);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pure-black);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.policyButton:hover {
+  background: var(--background-gray);
+  border-color: var(--pure-black);
+}
+
+.policyButton svg {
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+  }
+
   .staffSelector {
     flex-direction: column;
     align-items: stretch;
@@ -31,6 +68,11 @@
 
   .staffSelectorLabel {
     text-align: left;
+  }
+
+  .policyButton {
+    width: 100%;
+    justify-content: center;
   }
 }
 

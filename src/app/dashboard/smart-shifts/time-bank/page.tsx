@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Settings } from 'react-feather';
 import { useVenueSelection } from '@/features/smart-shifts/ai-scheduler/hooks/useVenueSelection';
 import { useStaff } from '@/features/smart-shifts/staff/hooks/useStaff';
 import { PageHeader } from '@/components/dashboard/layout';
@@ -10,6 +12,7 @@ import pageLayout from '@/styles/page-layout.module.css';
 import styles from './time-bank.module.css';
 
 export default function TimeBankPage() {
+  const router = useRouter();
   const { venues, selectedVenueId, setSelectedVenueId } = useVenueSelection();
   const [selectedStaffId, setSelectedStaffId] = useState<string>('');
 
@@ -60,23 +63,33 @@ export default function TimeBankPage() {
       />
 
       <div className={styles.content}>
-        {/* Staff Selector */}
-        <div className={styles.staffSelector}>
-          <label htmlFor="staff-select" className={styles.staffSelectorLabel}>
-            Seleziona Dipendente:
-          </label>
-          <Select
-            id="staff-select"
-            value={selectedStaffId}
-            onChange={(e) => setSelectedStaffId(e.target.value)}
+        {/* Staff Selector and Policy Button */}
+        <div className={styles.toolbar}>
+          <div className={styles.staffSelector}>
+            <label htmlFor="staff-select" className={styles.staffSelectorLabel}>
+              Seleziona Dipendente:
+            </label>
+            <Select
+              id="staff-select"
+              value={selectedStaffId}
+              onChange={(e) => setSelectedStaffId(e.target.value)}
+            >
+              <option value="">Seleziona un dipendente</option>
+              {staffList.map((staff) => (
+                <option key={staff.id} value={staff.id}>
+                  {getFullName(staff)}
+                </option>
+              ))}
+            </Select>
+          </div>
+          <button
+            className={styles.policyButton}
+            onClick={() => router.push('/dashboard/smart-shifts/time-bank/policy')}
+            title="Configura parametri banca ore"
           >
-            <option value="">Seleziona un dipendente</option>
-            {staffList.map((staff) => (
-              <option key={staff.id} value={staff.id}>
-                {getFullName(staff)}
-              </option>
-            ))}
-          </Select>
+            <Settings size={18} />
+            Configura Policy
+          </button>
         </div>
 
         {/* Content */}

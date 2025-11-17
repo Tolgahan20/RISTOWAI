@@ -126,7 +126,16 @@ export const TimeEventsList: React.FC<TimeEventsListProps> = ({
               <div className={styles.eventHeader}>
                 <div className={styles.eventType}>
                   {getEventIcon(event.kind)}
-                  {getEventLabel(event.kind)}
+                  <div>
+                    <div style={{ fontSize: 'var(--font-size-base)', fontWeight: '600', color: 'var(--pure-black)', marginBottom: '4px' }}>
+                      {getEventLabel(event.kind)}
+                    </div>
+                    {event.staffName && (
+                      <div style={{ fontSize: 'var(--font-size-sm)', color: '#6B7280', fontWeight: '500' }}>
+                        {event.staffName}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <span
                   className={`${styles.eventBadge} ${getSourceBadgeClass(event.source)}`}
@@ -136,20 +145,12 @@ export const TimeEventsList: React.FC<TimeEventsListProps> = ({
               </div>
 
               <div className={styles.eventTimestamp}>
+                <Clock size={14} />
                 {formatDateTime(event.timestamp)}
               </div>
 
-              {(event.shiftId || event.geolocationLat || event.geolocationLon) && (
+              {(event.geolocationLat || event.geolocationLon) && (
                 <div className={styles.eventDetails}>
-                  {event.shiftId && (
-                    <div className={styles.eventDetail}>
-                      <span className={styles.eventDetailLabel}>Turno:</span>
-                      <span className={styles.eventDetailValue}>
-                        {event.shiftId.substring(0, 8)}
-                      </span>
-                    </div>
-                  )}
-
                   {event.geolocationLat && event.geolocationLon && (
                     <div className={styles.eventDetail}>
                       <span className={styles.eventDetailLabel}>Posizione:</span>

@@ -107,6 +107,7 @@ export interface PublishScheduleRequest {
   shifts: ShiftToPublish[];
   aiReasoning?: string;
   aiMode?: string;
+  sendWhatsApp?: boolean;
 }
 
 export enum JobStatus {
