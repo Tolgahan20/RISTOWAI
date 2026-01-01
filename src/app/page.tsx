@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Hero } from "@/components/landing-page/sections/hero";
 import { Features } from "@/components/landing-page/sections/features";
-import { MarketStats } from "@/components/landing-page/sections/market-stats";
 import { HowItWorks } from "@/components/landing-page/sections/how-it-works";
 import { Pricing } from "@/components/landing-page/sections/pricing";
 import { WaitingList } from "@/components/landing-page/sections/waiting-list";
@@ -87,10 +86,9 @@ export default function Home() {
           <main className={styles.main}>
             <Hero />
             <Features />
-            <div className={styles.marketStats}>
-              <MarketStats />
-            </div>
+            <div className={styles.howItWorks}>
             <HowItWorks />
+            </div>
             <Pricing />
             <div className={styles.waitingList}>
               <WaitingList />

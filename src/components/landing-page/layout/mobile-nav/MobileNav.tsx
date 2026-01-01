@@ -10,7 +10,6 @@ import { UrlObject } from 'url';
 
 const navItems = [
   { label: 'Soluzioni', href: '#features' as const },
-  { label: 'Mercato Attuale', href: '#market-stats' as const },
   { label: 'Come Funziona', href: '#how-it-works' as const },
   { label: 'Prezzi', href: '#pricing' as const },
   { label: "Lista d'attesa", href: '#waiting-list' as const },

@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 import gsap from 'gsap';
 import { Button } from '../../ui/button';
@@ -10,6 +11,7 @@ export const Hero: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const entranceTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -33,6 +35,12 @@ export const Hero: React.FC = () => {
         { opacity: 1, y: 0, duration: 0.8 },
         '-=0.4',
       )
+      .fromTo(
+        imageRef.current,
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 1 },
+        '-=0.6',
+      );
 
 
     return () => {
@@ -60,6 +68,18 @@ export const Hero: React.FC = () => {
           >
             Inizia Ora
           </Button>
+        </div>
+
+        <div ref={imageRef} className={styles.imageContainer}>
+          <Image
+            src="/images/Ristowai-Universe.png"
+            alt="Ristowai Universe - AI Restaurant Management Platform"
+            width={800}
+            height={600}
+            priority
+            draggable={false}
+            className={styles.heroImage}
+          />
         </div>
       </div>
     </section>

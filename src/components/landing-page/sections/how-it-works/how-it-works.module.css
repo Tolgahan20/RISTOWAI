@@ -1,18 +1,44 @@
 .section {
   width: 100%;
-  background-color: var(--pure-white);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
 }
 
 .container {
+  background-color: var(--pure-white);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 64px 64px 0 0;
+  transform-origin: center top;
+  will-change: width;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  transition: width var(--transition-normal);
+}
+
+.container.expanded {
+  width: 100%;
+  border-radius: 64px 64px 0 0;
+}
+
+.innerContainer {
   max-width: 1420px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 128px 24px;
+  width: 100%;
 }
 
 .titleContainer {
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 }
 
 .title {
@@ -35,6 +61,7 @@
 .stepsContainer {
   position: relative;
   padding: 0 40px;
+  margin-bottom: 128px;
 }
 
 .progressLine {
@@ -122,7 +149,21 @@
   display: none;
 }
 
+@media (max-width: 1440px) {
+  .innerContainer {
+    padding: 96px 24px;
+  }
+}
+
 @media (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+
+  .innerContainer {
+    padding: 64px 24px;
+  }
+
   .titleContainer {
     margin-bottom: 80px;
   }
@@ -133,6 +174,10 @@
 
   .subtitle {
     font-size: 20px;
+  }
+
+  .stepsContainer {
+    margin-bottom: 64px;
   }
 
   .steps {
@@ -150,12 +195,13 @@
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 80px 0;
+  .container {
+    border-radius: 32px 32px 0 0 !important;
+    width: 98%;
   }
 
-  .container {
-    padding: 0 16px;
+  .innerContainer {
+    padding: 48px 16px;
   }
 
   .titleContainer {
@@ -173,6 +219,7 @@
 
   .stepsContainer {
     padding: 0;
+    margin-bottom: 48px;
   }
 
   .progressLine {

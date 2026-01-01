@@ -29,17 +29,36 @@ const steps = [
 
 export const HowItWorks = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
+    const container = containerRef.current;
     const title = titleRef.current;
     const progress = progressRef.current;
     const cards = cardsRef.current;
 
-    if (!section || !title || !progress || cards.length === 0) return;
+    if (!section || !container || !title || !progress || cards.length === 0) return;
+
+    // Container expansion animation
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: 1,
+        onUpdate: (self) => {
+          if (self.progress > 0.5) {
+            container.classList.add(styles.expanded);
+          } else {
+            container.classList.remove(styles.expanded);
+          }
+        }
+      }
+    });
 
     // Title animation
     gsap.from(title, {
@@ -100,51 +119,53 @@ export const HowItWorks = () => {
 
   return (
     <section id="how-it-works" ref={sectionRef} className={styles.section} data-section="white">
-      <div className={styles.container}>
-        <div ref={titleRef} className={styles.titleContainer}>
-          <h2 className={styles.title}>Registrati, Gestisci e Opera</h2>
-          <p className={styles.subtitle}>Ti accompagniamo dal primo passo fino a oltre</p>
-        </div>
-        
-        <div className={styles.stepsContainer}>
-          <div ref={progressRef} className={styles.progressLine}>
-            {steps.map((_, index) => (
-              <div key={index} className={styles.progressPoint} />
-            ))}
+      <div ref={containerRef} className={styles.container}>
+        <div className={styles.innerContainer}>
+          <div ref={titleRef} className={styles.titleContainer}>
+            <h2 className={styles.title}>Registrati, Gestisci e Opera</h2>
+            <p className={styles.subtitle}>Ti accompagniamo dal primo passo fino a oltre</p>
           </div>
           
-          <div className={styles.steps}>
-            {steps.map((step, index) => (
-              <React.Fragment key={index}>
-                <div 
-                  ref={el => {
-                    if (el) {
-                      cardsRef.current[index] = el;
-                    }
-                  }}
-                  className={styles.stepCard}
-                >
-                  <div className={styles.stepHeader}>
-                    <span className={styles.stepNumber}>{step.number}</span>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
+          <div className={styles.stepsContainer}>
+            <div ref={progressRef} className={styles.progressLine}>
+              {steps.map((_, index) => (
+                <div key={index} className={styles.progressPoint} />
+              ))}
+            </div>
+            
+            <div className={styles.steps}>
+              {steps.map((step, index) => (
+                <React.Fragment key={index}>
+                  <div 
+                    ref={el => {
+                      if (el) {
+                        cardsRef.current[index] = el;
+                      }
+                    }}
+                    className={styles.stepCard}
+                  >
+                    <div className={styles.stepHeader}>
+                      <span className={styles.stepNumber}>{step.number}</span>
+                      <h3 className={styles.stepTitle}>{step.title}</h3>
+                    </div>
+                    <p className={styles.stepDescription}>{step.description}</p>
+                    {step.note && (
+                      <a 
+                        href="mailto:info@ristowai.com?subject=Richiesta%20Onboarding%20Locale&body=Ciao%2C%20sono%20%5BNome%20Locale%5D%20e%20mi%20servirebbe%20onboarding%20locale.%20Grazie."
+                        className={styles.stepNote}
+                      >
+                        {step.note}
+                      </a>
+                    )}
                   </div>
-                  <p className={styles.stepDescription}>{step.description}</p>
-                  {step.note && (
-                    <a 
-                      href="mailto:info@ristowai.com?subject=Richiesta%20Onboarding%20Locale&body=Ciao%2C%20sono%20%5BNome%20Locale%5D%20e%20mi%20servirebbe%20onboarding%20locale.%20Grazie."
-                      className={styles.stepNote}
-                    >
-                      {step.note}
-                    </a>
+                  {index < steps.length - 1 && (
+                    <div className={styles.arrowContainer}>
+                      <ChevronDown size={32} className={styles.arrow} />
+                    </div>
                   )}
-                </div>
-                {index < steps.length - 1 && (
-                  <div className={styles.arrowContainer}>
-                    <ChevronDown size={32} className={styles.arrow} />
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         </div>
       </div>

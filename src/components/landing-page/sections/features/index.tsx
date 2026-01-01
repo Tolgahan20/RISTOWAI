@@ -46,38 +46,6 @@ const features = [
       'Regolamenti & Dress Code'
     ]
   },
-  {
-    title: 'HR Smart',
-    description: 'HR più veloce: assumi, integra e gestisci documenti senza stress.',
-    animation: 'hr_smart' as const,
-    features: [
-      'Creazioni Annunci di Lavoro',
-      'Screening CV con Pointmatch',
-      'Onboarding Assunzione',
-      'Welcome Kit',
-      'Portale HR Smart',
-      'Gestione Certificati'
-    ]
-  },
-  {
-    title: 'Marketing & Reviews',
-    description: 'Più clienti e reputazione online, senza perdere tempo nelle risposte.',
-    animation: 'marketing_reviews' as const,
-    features: [
-      'Analisi Identità locale',
-      'Rafforzamento Brand con suggerimenti social',
-      'Auto-risposta recensioni con analisi critiche e alert'
-    ]
-  },
-  {
-    title: 'Manager Dashboard',
-    description: 'Tutti i numeri del tuo locale in un solo sguardo.',
-    animation: 'manager_dashboard' as const,
-    features: [
-      'KPI per modulo acquistato o bundle',
-      'Agenda intelligente con alert scadenze/priorità'
-    ]
-  }
 ];
 
 export const Features: React.FC = () => {

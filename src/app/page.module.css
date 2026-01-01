@@ -14,6 +14,7 @@
   pointer-events: none;
 }
 
+
 .revealLeft,
 .revealRight {
   position: absolute;
@@ -49,6 +50,9 @@
   width: 100%;
   z-index: var(--z-nav);
 
+}
+.howItWorks{
+  background: var(--pure-black);
 }
 .marketStats{
   background: var(--pure-black);
