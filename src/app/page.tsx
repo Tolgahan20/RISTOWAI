@@ -11,6 +11,7 @@ import { CallToAction } from "@/components/landing-page/sections/call-to-action"
 import { Footer } from "@/components/landing-page/sections/footer";
 import { DesktopNav, MobileNav } from "@/components/landing-page/layout";
 import { SmoothScroll } from "@/components/landing-page/providers/SmoothScroll";
+import { CustomCursor } from "@/components/landing-page/ui/CustomCursor";
 import gsap from "gsap";
 import styles from "./page.module.css";
 
@@ -71,6 +72,7 @@ export default function Home() {
 
   return (
     <>
+      <CustomCursor />
       {showReveal && (
         <div ref={revealRef} className={styles.pageReveal}>
           <div className={styles.revealLeft}></div>
