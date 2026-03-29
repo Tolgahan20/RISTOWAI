@@ -34,6 +34,16 @@ export const BuiltFor = () => {
     const chips = chipsRef.current;
 
     if (!section || !title || !marquee || !chips) return;
+    const isMobile = window.innerWidth <= 1024;
+
+    if (isMobile) {
+      gsap.set([title, marquee, chips], {
+        opacity: 1,
+        y: 0,
+        clearProps: 'transform',
+      });
+      return;
+    }
 
     gsap.from([title, marquee, chips], {
       y: 32,

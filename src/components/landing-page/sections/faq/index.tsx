@@ -40,6 +40,16 @@ export const FAQ = () => {
     const grid = gridRef.current;
 
     if (!section || !container || !title || !grid || cardRefs.current.length === 0) return;
+    const isMobile = window.innerWidth <= 1024;
+
+    if (isMobile) {
+      gsap.set([title, ...cardRefs.current], {
+        opacity: 1,
+        y: 0,
+        clearProps: 'transform',
+      });
+      return;
+    }
 
     gsap.timeline({
       scrollTrigger: {

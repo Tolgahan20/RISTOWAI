@@ -47,6 +47,16 @@ export const MarketStats = () => {
     const cta = ctaRef.current;
 
     if (!section || !container || !title || !calculator || !cta) return;
+    const isMobile = window.innerWidth <= 1024;
+
+    if (isMobile) {
+      gsap.set([title, calculator, cta], {
+        opacity: 1,
+        y: 0,
+        clearProps: 'transform',
+      });
+      return;
+    }
 
     gsap.timeline({
       scrollTrigger: {
