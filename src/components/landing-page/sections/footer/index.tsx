@@ -36,20 +36,26 @@ export const Footer = () => {
               height={48}
               className={styles.logo}
             />
-            <p className={styles.description}>
-              Copilota AI per ristoranti. Realizzato in Italia
-            </p>
+            <div className={styles.upcomingBlock}>
+              <p className={styles.upcomingLabel}>Prossimamente</p>
+              <p className={styles.upcomingItems}>
+                <span>Food cost intelligence</span>
+                <span className={styles.separator}>·</span>
+                <span>Analisi operativa</span>
+                <span className={styles.separator}>·</span>
+                <span>olmali</span>
+              </p>
+            </div>
           </div>
 
           <div className={styles.linkGroup}>
             <h3 className={styles.groupTitle}>Link Rapidi</h3>
             <div className={styles.linkList}>
-              {renderLink('#features', 'Soluzioni', true)}
-              {renderLink('#market-stats', 'Mercato Attuale', true)}
-              {renderLink('#how-it-works', 'Come funziona', true)}
-              {renderLink('#pricing', 'Prezzi', true)}
-              {renderLink('#waiting-list', 'Lista d\'attesa', true)}
-              {renderLink('#faq', 'FAQ', true)}
+              {renderLink('#single-system', 'Prodotto', true)}
+              {renderLink('#area-manager', 'Scheduling', true)}
+              {renderLink('#labour-intelligence', 'Intelligence', true)}
+              {renderLink('#headquarters', 'Governance', true)}
+              {renderLink('/about', 'Chi Siamo')}
             </div>
           </div>
 
@@ -58,7 +64,7 @@ export const Footer = () => {
             <div className={styles.linkList}>
               {renderLink('/about', 'Chi Siamo')}
               {renderLink('/contact', 'Contatti')}
-              {renderLink('/beta-test', 'Programma Beta Test')}
+              {renderLink('/beta-test', 'Prenota una demo')}
             </div>
           </div>
 

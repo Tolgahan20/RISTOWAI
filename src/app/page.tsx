@@ -7,11 +7,12 @@ import { HowItWorks } from "@/components/landing-page/sections/how-it-works";
 import { Pricing } from "@/components/landing-page/sections/pricing";
 import { WaitingList } from "@/components/landing-page/sections/waiting-list";
 import { FAQ } from "@/components/landing-page/sections/faq";
+import { MarketStats } from "@/components/landing-page/sections/market-stats";
+import { BuiltFor } from "@/components/landing-page/sections/built-for";
 import { CallToAction } from "@/components/landing-page/sections/call-to-action";
 import { Footer } from "@/components/landing-page/sections/footer";
 import { DesktopNav, MobileNav } from "@/components/landing-page/layout";
 import { SmoothScroll } from "@/components/landing-page/providers/SmoothScroll";
-import { CustomCursor } from "@/components/landing-page/ui/CustomCursor";
 import gsap from "gsap";
 import styles from "./page.module.css";
 
@@ -72,7 +73,6 @@ export default function Home() {
 
   return (
     <>
-      <CustomCursor />
       {showReveal && (
         <div ref={revealRef} className={styles.pageReveal}>
           <div className={styles.revealLeft}></div>
@@ -98,6 +98,10 @@ export default function Home() {
             <div className={styles.marketStats}>
               <FAQ />
             </div>
+            <div className={styles.howItWorks}>
+              <MarketStats />
+            </div>
+            <BuiltFor />
             <CallToAction />
           </main>
           <Footer />

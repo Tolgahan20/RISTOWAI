@@ -38,6 +38,34 @@
   max-width: 300px;
 }
 
+.upcomingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 320px;
+}
+
+.upcomingLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.upcomingItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.35);
+}
+
 .linkGroup {
   display: flex;
   flex-direction: column;

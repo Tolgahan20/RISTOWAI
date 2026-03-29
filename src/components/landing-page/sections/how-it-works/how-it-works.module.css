@@ -39,6 +39,19 @@
 .titleContainer {
   text-align: center;
   margin-bottom: 80px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pure-black);
+  opacity: 0.38;
 }
 
 .title {
@@ -49,13 +62,12 @@
   margin-bottom: 16px;
 }
 
-.subtitle {
-  font-size: 24px;
-  font-weight: 500;
+.description {
+  font-size: 18px;
+  line-height: 1.7;
   color: var(--pure-black);
-  letter-spacing: -0.01em;
-  line-height: 1.4;
-  opacity: 0.8;
+  opacity: 0.68;
+  margin: 20px 0 0;
 }
 
 .stepsContainer {
@@ -103,15 +115,21 @@
 
 .stepHeader {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
   margin-bottom: 16px;
 }
 
 .stepNumber {
-  font-size: 24px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--pure-black);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .stepTitle {
@@ -127,18 +145,6 @@
   line-height: 1.5;
   color: var(--pure-black);
   margin-bottom: 12px;
-}
-
-.stepNote {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--primary-green);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  text-align: left;
 }
 
 .arrowContainer {
@@ -172,8 +178,8 @@
     font-size: 48px;
   }
 
-  .subtitle {
-    font-size: 20px;
+  .description {
+    font-size: 17px;
   }
 
   .stepsContainer {
@@ -213,8 +219,14 @@
     font-size: 32px;
   }
 
-  .subtitle {
-    font-size: 16px;
+  .eyebrow {
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+  }
+
+  .description {
+    font-size: 15px;
+    margin-top: 16px;
   }
 
   .stepsContainer {

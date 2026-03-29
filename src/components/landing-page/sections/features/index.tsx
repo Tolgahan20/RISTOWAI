@@ -3,48 +3,55 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { AlertCircle, EyeOff, Shuffle, TrendingUp } from 'react-feather';
 import styles from './features.module.css';
-import { FeatureCard } from './FeatureCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
+const impactStats = [
   {
-    title: 'Turni AI',
-    description: 'Turni pronti in pochi secondi, senza errori e sempre in regola.',
-    animation: 'smart_shifts' as const,
-    features: [
-      '<30 sec Output',
-      'Punch Clock',
-      'Ricalcolo imprevisto',
-      'Banche Ore',
-      'Alert legali',
-      'Export Payroll'
-    ]
+    value: '5-15 ore/settimana',
+    description: 'Tempo speso nella pianificazione manuale dei turni',
   },
   {
-    title: 'FoodBrain',
-    description: 'Menu ottimizzato: più margini, meno sprechi.',
-    animation: 'food_brain' as const,
-    features: [
-      'Analisi % Target',
-      'Analisi Full Menu',
-      'Esperimenti Piatti/Drink',
-      'Suggerimenti Pricing'
-    ]
+    value: '3-8% di deriva',
+    description: 'Aumento del costo del lavoro durante la settimana',
   },
   {
-    title: 'Staff Pro+',
-    description: 'Tutto lo staff organizzato e conforme, senza carta e confusione.',
-    animation: 'staff_pro' as const,
-    features: [
-      'HACCP digitale',
-      'Export per ASL',
-      'Analisi Emotivo Staff (Burnout-free)',
-      'Canali Comunicazioni',
-      'Checklist & Manutenzioni',
-      'Regolamenti & Dress Code'
-    ]
+    value: '30-50%',
+    description: 'Turni modificati dopo la pubblicazione',
+  },
+  {
+    value: 'Nessuna visibilità',
+    description: 'Sui driver del costo del lavoro tra i locali',
+  },
+];
+
+const operationalIssues = [
+  {
+    title: 'Caos nella pianificazione dei turni',
+    description:
+      'I manager modificano continuamente i turni e reagiscono ai cambiamenti dell’ultimo minuto senza un controllo operativo strutturato.',
+    icon: Shuffle,
+    featured: true,
+  },
+  {
+    title: 'Deriva del costo del lavoro',
+    description:
+      'I turni sembrano bilanciati a inizio settimana, ma il costo del lavoro diverge man mano che le operazioni evolvono.',
+    icon: TrendingUp,
+  },
+  {
+    title: 'Dati senza controllo operativo',
+    description:
+      'Gli area manager vedono i report ma non hanno strumenti per intervenire tempestivamente.',
+    icon: EyeOff,
+  },
+  {
+    title: 'Decisioni frammentate',
+    description:
+      'Punto vendita, area e headquarters operano su informazioni disconnesse.',
+    icon: AlertCircle,
   },
 ];
 
@@ -115,17 +122,46 @@ export const Features: React.FC = () => {
       <div ref={containerRef} className={styles.container}>
         <div className={styles.innerContainer}>
           <div ref={headlineRef} className={styles.headline}>
-            <h2>STIAMO RIVOLUZIONANDO<br />IL MODO DI FARE<br />RISTORAZIONE.</h2>
+            <h2>Gestire più locali significa perdere il controllo del lavoro</h2>
+            <p>
+              Quando una catena cresce, la pianificazione dei turni diventa frammentata, i costi divergono e le decisioni operative avvengono senza visibilità.
+            </p>
           </div>
 
           <div ref={featuresGridRef} className={styles.featuresGrid}>
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={feature.title}
-                {...feature}
-                index={index}
-              />
-            ))}
+            <div className={styles.metricsHeader}>
+              <span className={styles.metricsLabel}>
+                Impatto operativo tipico nelle catene della ristorazione multi-sede
+              </span>
+            </div>
+
+            <div className={styles.metricsGrid}>
+              {impactStats.map((stat) => (
+                <article key={stat.value} className={styles.metricCard}>
+                  <h3 className={styles.metricValue}>{stat.value}</h3>
+                  <p className={styles.metricDescription}>{stat.description}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className={styles.issueGrid}>
+              {operationalIssues.map((issue) => {
+                const Icon = issue.icon;
+
+                return (
+                  <article
+                    key={issue.title}
+                    className={`${styles.issueCard} ${issue.featured ? styles.issueCardFeatured : ''}`}
+                  >
+                    <div className={styles.issueIcon}>
+                      <Icon size={20} />
+                    </div>
+                    <h3 className={styles.issueTitle}>{issue.title}</h3>
+                    <p className={styles.issueDescription}>{issue.description}</p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

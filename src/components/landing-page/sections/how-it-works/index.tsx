@@ -10,20 +10,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    number: '1',
-    title: 'Crea il tuo account',
-    description: 'Registrati in meno di 1 minuto, senza carta di credito.'
+    number: 'Punto Vendita',
+    title: 'Livello Punto Vendita',
+    description: 'I manager pianificano i turni, gestiscono la settimana operativa e chiudono le operazioni.'
   },
   {
-    number: '2',
-    title: 'Inserisci i dati del locale',
-    description: 'Compila il preform guidato (<30 min).',
-    note: 'Oppure lascia fare a noi: Chiedi Onboarding'
+    number: 'Area',
+    title: 'Livello Area',
+    description: 'Gli area manager monitorano le performance del lavoro e supportano i locali.'
   },
   {
-    number: '3',
-    title: 'Attiva la soluzione AI',
-    description: 'Scegli il modulo che ti serve e inizia subito.'
+    number: 'HQ',
+    title: 'Livello Headquarters',
+    description: 'La direzione analizza i trend di rete e governa il costo del lavoro.'
   }
 ];
 
@@ -121,9 +120,12 @@ export const HowItWorks = () => {
     <section id="how-it-works" ref={sectionRef} className={styles.section} data-section="white">
       <div ref={containerRef} className={styles.container}>
         <div className={styles.innerContainer}>
-          <div ref={titleRef} className={styles.titleContainer}>
-            <h2 className={styles.title}>Registrati, Gestisci e Opera</h2>
-            <p className={styles.subtitle}>Ti accompagniamo dal primo passo fino a oltre</p>
+          <div id="single-system" ref={titleRef} className={styles.titleContainer}>
+            <p className={styles.eyebrow}>Tre livelli operativi. Un unico sistema per il lavoro.</p>
+            <h2 className={styles.title}>Un unico sistema per punto vendita, area e headquarters</h2>
+            <p className={styles.description}>
+              Ristowai connette ogni livello operativo — dal punto vendita agli headquarters — in un&apos;unica piattaforma per la gestione del lavoro.
+            </p>
           </div>
           
           <div className={styles.stepsContainer}>
@@ -149,14 +151,6 @@ export const HowItWorks = () => {
                       <h3 className={styles.stepTitle}>{step.title}</h3>
                     </div>
                     <p className={styles.stepDescription}>{step.description}</p>
-                    {step.note && (
-                      <a 
-                        href="mailto:info@ristowai.com?subject=Richiesta%20Onboarding%20Locale&body=Ciao%2C%20sono%20%5BNome%20Locale%5D%20e%20mi%20servirebbe%20onboarding%20locale.%20Grazie."
-                        className={styles.stepNote}
-                      >
-                        {step.note}
-                      </a>
-                    )}
                   </div>
                   {index < steps.length - 1 && (
                     <div className={styles.arrowContainer}>

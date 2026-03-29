@@ -2,41 +2,51 @@
 
 import React, { useEffect, useRef } from 'react';
 import styles from './waiting-list.module.css';
-import { ArrowUpRight } from 'react-feather';
+import { AlertCircle, BarChart2, Calendar } from 'react-feather';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const cards = [
+  {
+    title: 'Impatto della domanda',
+    description: 'Le variazioni della domanda clienti influenzano il fabbisogno di personale.',
+    icon: BarChart2,
+  },
+  {
+    title: 'Impatto della pianificazione',
+    description: 'Le decisioni di scheduling possono aumentare o ridurre il costo del lavoro.',
+    icon: Calendar,
+  },
+  {
+    title: 'Impatto dell’esecuzione',
+    description: 'Eventi operativi come malattie, sostituzioni e straordinari modificano il piano iniziale.',
+    icon: AlertCircle,
+  },
+];
 
 export const WaitingList = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const numberRef = useRef<HTMLDivElement>(null);
-  const noteRef = useRef<HTMLParagraphElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const disclaimerRef = useRef<HTMLParagraphElement>(null);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const formulaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const container = containerRef.current;
     const title = titleRef.current;
     const subtitle = subtitleRef.current;
-    const stats = statsRef.current;
-    const number = numberRef.current;
-    const note = noteRef.current;
-    const button = buttonRef.current;
-    const disclaimer = disclaimerRef.current;
+    const cardElements = cardsRef.current;
+    const formula = formulaRef.current;
 
-    if (!section || !container || !title || !subtitle || !stats || !number || !note || !button || !disclaimer) return;
+    if (!section || !container || !title || !subtitle || cardElements.length === 0 || !formula) return;
 
-    // Check if mobile
     const isMobile = window.innerWidth <= 1024;
 
-    // Container expansion animation (works on both mobile and desktop)
-    const containerTl = gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top 80%',
@@ -48,26 +58,16 @@ export const WaitingList = () => {
           } else {
             container.classList.remove(styles.expanded);
           }
-        }
-      }
+        },
+      },
     });
 
     if (isMobile) {
-      // On mobile, skip content animations but keep container animation
       return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     }
 
-    // Desktop content animations
-    // Set initial state to prevent flashing
-    gsap.set([title, subtitle, stats, number, note, button, disclaimer], {
-      opacity: 1,
-      y: 0,
-      scale: 1
-    });
-
-    // Content animations
     gsap.from(title, {
       y: 60,
       opacity: 0,
@@ -80,10 +80,10 @@ export const WaitingList = () => {
     });
 
     gsap.from(subtitle, {
-      y: 40,
+      y: 36,
       opacity: 0,
-      duration: 1,
-      delay: 0.2,
+      duration: 0.9,
+      delay: 0.15,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: subtitle,
@@ -91,86 +91,80 @@ export const WaitingList = () => {
       },
     });
 
-    // Number counter animation
-    gsap.to(number, {
-      textContent: 327,
-      duration: 2,
-      ease: 'power1.out',
-      snap: { textContent: 1 },
-      onUpdate: function() {
-        if (number) {
-          number.innerHTML = Math.ceil(parseFloat(number.textContent || '0')).toString();
-        }
-      },
-      scrollTrigger: {
-        trigger: number,
-        start: 'top 80%',
-      },
-    });
-
-    // Stats container animation
-    gsap.from(stats, {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      ease: 'back.out(1.7)',
-      scrollTrigger: {
-        trigger: stats,
-        start: 'top 80%',
-      },
-    });
-
-    // Bottom content animations
-    const bottomElements = [note, button, disclaimer];
-    bottomElements.forEach((el, index) => {
-      gsap.from(el, {
-        y: 30,
+    cardElements.forEach((card, index) => {
+      gsap.from(card, {
+        y: 48,
         opacity: 0,
         duration: 0.8,
-        delay: 0.1 * index,
-        ease: 'power2.out',
+        delay: 0.12 * index,
+        ease: 'power3.out',
         scrollTrigger: {
-          trigger: el,
+          trigger: card,
           start: 'top 85%',
         },
       });
     });
 
+    gsap.from(formula, {
+      y: 28,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: formula,
+        start: 'top 88%',
+      },
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
-    <section id="waiting-list" ref={sectionRef} className={styles.section} data-section="dark">
+    <section id="labour-intelligence" ref={sectionRef} className={styles.section} data-section="dark">
       <div ref={containerRef} className={styles.container}>
         <div className={styles.innerContainer}>
-          <h2 ref={titleRef} className={styles.title}>Lista d'attesa</h2>
+          <h2 ref={titleRef} className={styles.title}>COMPRENDI PERCHÉ CAMBIA IL COSTO DEL LAVORO</h2>
           <p ref={subtitleRef} className={styles.subtitle}>
-            Unisciti ai primi locali che trasformeranno la loro gestione con l'AI
+            Molti sistemi mostrano soltanto i numeri del lavoro.
+            <br />
+            Ristowai spiega i fattori operativi che li determinano.
           </p>
 
-          <div ref={statsRef} className={styles.statsContainer}>
-            <div ref={numberRef} className={styles.statsNumber}>327</div>
-            <div className={styles.statsLabel}>locali già in lista</div>
+          <div className={styles.cardsGrid}>
+            {cards.map((card, index) => {
+              const Icon = card.icon;
+
+              return (
+                <div
+                  key={card.title}
+                  ref={(el) => {
+                    if (el) {
+                      cardsRef.current[index] = el;
+                    }
+                  }}
+                  className={styles.card}
+                >
+                  <span className={styles.cardIcon}>
+                    <Icon size={28} />
+                  </span>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <p className={styles.cardDescription}>{card.description}</p>
+                </div>
+              );
+            })}
           </div>
 
-          <p ref={noteRef} className={styles.note}>
-            Posti limitati: entra ora per non perdere l'accesso anticipato.
-          </p>
-
-          <button ref={buttonRef} className={styles.button}>
-            <div className={styles.buttonInner}>
-              <span className={styles.buttonText} data-hover="Unisciti alla lista">
-                Unisciti alla lista
-              </span>
-            </div>
-            <ArrowUpRight className={styles.buttonIcon} size={20} />
-          </button>
-
-          <p ref={disclaimerRef} className={styles.disclaimer}>
-            Il tuo posto in lista è riservato. Nessun pagamento richiesto. Verrai ricontattato dal nostro team.
-          </p>
+          <div ref={formulaRef} className={styles.formula}>
+            <span className={`${styles.formulaPill} ${styles.formulaPillPrimary}`}>Costo del lavoro</span>
+            <span className={styles.formulaOperator}>=</span>
+            <span className={styles.formulaPill}>Domanda</span>
+            <span className={styles.formulaOperator}>+</span>
+            <span className={styles.formulaPill}>Pianificazione</span>
+            <span className={styles.formulaOperator}>+</span>
+            <span className={styles.formulaPill}>Esecuzione</span>
+          </div>
         </div>
       </div>
     </section>

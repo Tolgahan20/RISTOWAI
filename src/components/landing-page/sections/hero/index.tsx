@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 import gsap from 'gsap';
 import { Button } from '../../ui/button';
@@ -10,8 +9,7 @@ import { ArrowUpRight } from 'react-feather';
 export const Hero: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const entranceTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -30,18 +28,11 @@ export const Hero: React.FC = () => {
         '-=0.6',
       )
       .fromTo(
-        buttonRef.current,
+        actionsRef.current,
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.8 },
         '-=0.4',
-      )
-      .fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.95 },
-        { opacity: 1, scale: 1, duration: 1 },
-        '-=0.6',
       );
-
 
     return () => {
       entranceTl.kill();
@@ -53,33 +44,29 @@ export const Hero: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 ref={titleRef} className={styles.title}>
-            L&apos;AI che trasforma la ristorazione in un business più intelligente
+            Scopri come le catene della ristorazione governano il costo del lavoro
           </h1>
 
           <p ref={subtitleRef} className={styles.subtitle}>
-            Riduci i costi fino al 20%, aumenta i margini del +12% e risparmia tempo prezioso — senza cambiare i sistemi che già usi.
+            Ristowai aiuta gruppi di ristorazione multi-sede a pianificare i turni, controllare il costo del lavoro e coordinare le decisioni tra punto vendita, area manager e headquarters.
           </p>
 
-          <Button
-            ref={buttonRef}
-            href="/demo"
-            size="large"
-            icon={<ArrowUpRight size={24} />}
-          >
-            Inizia Ora
-          </Button>
-        </div>
-
-        <div ref={imageRef} className={styles.imageContainer}>
-          <Image
-            src="/images/Ristowai-Universe.png"
-            alt="Ristowai Universe - AI Restaurant Management Platform"
-            width={800}
-            height={600}
-            priority
-            draggable={false}
-            className={styles.heroImage}
-          />
+          <div ref={actionsRef} className={styles.actions}>
+            <Button
+              href="/beta-test"
+              size="large"
+              icon={<ArrowUpRight size={24} />}
+            >
+              Prenota una demo
+            </Button>
+            <Button
+              href="#how-it-works"
+              variant="secondary"
+              size="large"
+            >
+              Scopri come funziona
+            </Button>
+          </div>
         </div>
       </div>
     </section>

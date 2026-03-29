@@ -55,6 +55,14 @@
   color: var(--pure-white);
 }
 
+.headline p {
+  max-width: 760px;
+  margin: 24px 0 0;
+  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .featuresGrid {
   display: flex;
   flex-direction: column;
@@ -68,6 +76,114 @@
   opacity: 1;
   transform: translateY(0);
   transition: all 0.8s var(--ease-out-expo);
+}
+
+.metricsHeader {
+  display: flex;
+  align-items: center;
+}
+
+.metricsLabel {
+  display: inline-block;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.metricCard {
+  min-height: 180px;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.metricValue {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--pure-white);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.metricDescription {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.issueGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.issueCard {
+  min-height: 230px;
+  padding: 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), background var(--transition-normal);
+}
+
+.issueCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.issueCardFeatured {
+  background:
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 45%),
+    rgba(255, 255, 255, 0.05);
+}
+
+.issueIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.issueTitle {
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--pure-white);
+  letter-spacing: -0.02em;
+}
+
+.issueDescription {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.66);
+  max-width: 52ch;
 }
 
 @media (max-width: 1440px) {
@@ -92,6 +208,14 @@
   .headline h2 {
     font-size: clamp(2.5rem, 6vw, 3.5rem);
   }
+
+  .headline p {
+    margin-top: 20px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -111,5 +235,31 @@
 
   .featuresGrid {
     padding: 0;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metricCard {
+    min-height: 0;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .issueGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .issueCard {
+    min-height: 0;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .issueDescription {
+    font-size: 1rem;
   }
 }

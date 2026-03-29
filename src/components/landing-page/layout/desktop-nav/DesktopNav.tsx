@@ -8,11 +8,11 @@ import { ArrowUpRight } from 'react-feather';
 import { UrlObject } from 'url';
 
 const navItems = [
-  { label: 'Soluzioni', href: '#features' as const },
-  { label: 'Come Funziona', href: '#how-it-works' as const },
-  { label: 'Prezzi', href: '#pricing' as const },
-  { label: "Lista d'attesa", href: '#waiting-list' as const },
-  { label: 'Domande Frequenti', href: '#faq' as const },
+  { label: 'Prodotto', href: '#single-system' as const },
+  { label: 'Scheduling', href: '#area-manager' as const },
+  { label: 'Intelligence', href: '#labour-intelligence' as const },
+  { label: 'Governance', href: '#headquarters' as const },
+  { label: 'Chi Siamo', href: '/about' as const },
 ];
 
 export const DesktopNav: React.FC = () => {
@@ -127,7 +127,7 @@ export const DesktopNav: React.FC = () => {
         <Link href={"/beta-test" as unknown as UrlObject} className={styles.demoButton}>
           <div className={styles.demoButtonInner}>
             <span className={styles.demoButtonText}>
-              Beta Test
+              Prenota una demo
             </span>
             <ArrowUpRight size={18} />
           </div>

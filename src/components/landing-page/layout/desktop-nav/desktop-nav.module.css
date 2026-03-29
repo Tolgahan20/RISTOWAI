@@ -141,7 +141,7 @@
 }
 
 .demoButtonText::after {
-  content: 'Beta Test';
+  content: 'Prenota una demo';
   position: absolute;
   left: 0;
   top: 100%;

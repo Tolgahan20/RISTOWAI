@@ -1,56 +1,37 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './faq.module.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown } from 'react-feather';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const faqs = [
+const metrics = [
   {
-    question: 'Devo avere competenze tecniche per usare Ristowai?',
-    answer: 'No. Ristowai è progettato per manager e personale del ristorante, non per esperti IT. La configurazione è guidata e puoi anche condividere le informazioni con noi via WhatsApp — noi configureremo tutto per te.'
+    value: '10–20%',
+    description: 'Riduzione del lavoro manuale nella pianificazione turni',
   },
   {
-    question: 'Posso provare Ristowai gratis?',
-    answer: 'Sì. Ogni ristorante riceve una prova gratuita di 1 mese con accesso completo a tutte le soluzioni.'
+    value: '2–5%',
+    description: 'Maggiore stabilità del costo del lavoro',
   },
   {
-    question: 'Posso scegliere solo alcune soluzioni?',
-    answer: 'Sì. Ogni soluzione funziona in modo indipendente. Paghi solo per quello che usi.'
+    value: 'Più veloce',
+    description: 'Individuazione dei problemi operativi',
   },
   {
-    question: 'Quali risultati posso aspettarmi?',
-    answer: 'Beta testers hanno segnalato costi operativi del 20% più bassi e un aumento del margine del 12% in soli 2 mesi.'
+    value: 'Allineato',
+    description: 'Decisioni sul lavoro tra punto vendita, area e headquarters',
   },
-  {
-    question: 'I miei dati sono sicuri?',
-    answer: 'Assolutamente. Tutti i dati sono crittografati, memorizzati in modo sicuro in Europa e mai condivisi con terze parti.'
-  },
-  {
-    question: 'Offrite servizi extra?',
-    answer: 'Sì. Su richiesta offriamo anche: Creazione showcase del sito web (€400–800 una volta sola), Consulenza nutrizionista o design del menu (€50–150).'
-  },
-  {
-    question: 'Il personale può usarlo su mobile?',
-    answer: 'Sì. Ristowai funziona su desktop, tablet e smartphone — non è necessario installare alcuna app.'
-  },
-  {
-    question: 'Come posso annullare la mia iscrizione?',
-    answer: 'Puoi annullare in qualsiasi momento. Nessun contratto a lungo termine, nessun costo nascosto.'
-  }
 ];
 
 export const FAQ = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const faqRefs = useRef<HTMLDivElement[]>([]);
-  const answerRefs = useRef<HTMLDivElement[]>([]);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -58,9 +39,8 @@ export const FAQ = () => {
     const title = titleRef.current;
     const grid = gridRef.current;
 
-    if (!section || !container || !title || !grid) return;
+    if (!section || !container || !title || !grid || cardRefs.current.length === 0) return;
 
-    // Container expansion animation
     gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -73,11 +53,10 @@ export const FAQ = () => {
           } else {
             container.classList.remove(styles.expanded);
           }
-        }
-      }
+        },
+      },
     });
 
-    // Title animation
     gsap.from(title, {
       y: 60,
       opacity: 0,
@@ -89,10 +68,9 @@ export const FAQ = () => {
       },
     });
 
-    // FAQ items animation
-    gsap.to(faqRefs.current, {
-      opacity: 1,
-      y: 0,
+    gsap.from(cardRefs.current, {
+      y: 32,
+      opacity: 0,
       duration: 0.8,
       stagger: 0.1,
       ease: 'power2.out',
@@ -103,7 +81,7 @@ export const FAQ = () => {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -111,35 +89,25 @@ export const FAQ = () => {
     <section id="faq" ref={sectionRef} className={styles.section} data-section="white">
       <div ref={containerRef} className={styles.container}>
         <div className={styles.innerContainer}>
-          <h2 ref={titleRef} className={styles.title}>Domande Frequenti</h2>
-          
-          <div ref={gridRef} className={styles.faqGrid}>
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                ref={el => {
-                  if (el) faqRefs.current[index] = el;
-                }}
-                className={styles.faqItem}
-              >
-                <button 
-                  className={styles.questionButton}
-                  onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+          <div className={styles.impactPanel}>
+            <h2 ref={titleRef} className={styles.title}>CHIAREZZA OPERATIVA GENERA IMPATTO MISURABILE</h2>
+
+            <div ref={gridRef} className={styles.metricsGrid}>
+              {metrics.map((metric, index) => (
+                <div
+                  key={metric.value}
+                  ref={(el) => {
+                    if (el) {
+                      cardRefs.current[index] = el;
+                    }
+                  }}
+                  className={styles.metricCard}
                 >
-                  <h3 className={styles.question}>{faq.question}</h3>
-                  <ChevronDown 
-                    className={`${styles.icon} ${expandedIndex === index ? styles.expanded : ''}`} 
-                    size={24}
-                  />
-                </button>
-                <div 
-                  ref={el => { if (el) answerRefs.current[index] = el; }}
-                  className={`${styles.answerWrapper} ${expandedIndex === index ? styles.expanded : ''}`}
-                >
-                  <p className={styles.answer}>{faq.answer}</p>
+                  <div className={styles.metricValue}>{metric.value}</div>
+                  <p className={styles.metricDescription}>{metric.description}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
