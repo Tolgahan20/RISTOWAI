@@ -101,7 +101,7 @@ export const cookiePolicyContent = (
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
       <p><strong>Titolare del trattamento:</strong></p>
       <p>Ristowai – Genova (GE), Italia</p>
-      <p>Email: privacy@ristowai.com</p>
+      <p>Email: adriano@ristowai.com</p>
       <p>© 2025 Ristowai. Tutti i diritti riservati.</p>
     </div>
   </>
@@ -118,7 +118,7 @@ export const privacyPolicyContent = (
       delle attività ristorative mediante intelligenza artificiale.
     </p>
     <p>Sede operativa: Genova (GE), Italia</p>
-    <p>Email di contatto: privacy@ristowai.com</p>
+    <p>Email di contatto: adriano@ristowai.com</p>
     <p>
       Ristowai agisce in qualità di titolare del trattamento ai sensi dell&apos;art. 4, n. 7 del Regolamento (UE) 2016/679 (&quot;GDPR&quot;).
     </p>
@@ -202,7 +202,7 @@ export const privacyPolicyContent = (
       <li>operano all&apos;interno dell&apos;Unione Europea o in Paesi che garantiscono un adeguato livello di protezione secondo la Commissione Europea;</li>
       <li>applicano standard di sicurezza conformi al GDPR (crittografia, controllo accessi, audit, backup, e policy di data retention).</li>
     </ul>
-    <p>L&apos;elenco aggiornato dei Responsabili del trattamento può essere richiesto scrivendo a privacy@ristowai.com.</p>
+    <p>L&apos;elenco aggiornato dei Responsabili del trattamento può essere richiesto scrivendo a adriano@ristowai.com.</p>
     <p>I dati non sono oggetto di diffusione pubblica né di vendita a terzi.</p>
 
     <h3>7. Trasferimenti extra UE</h3>
@@ -221,7 +221,7 @@ export const privacyPolicyContent = (
       <li>ottenere la portabilità dei dati;</li>
       <li>proporre reclamo al Garante per la Protezione dei Dati Personali (www.garanteprivacy.it).</li>
     </ul>
-    <p><strong>Per esercitare i diritti:</strong> privacy@ristowai.com</p>
+    <p><strong>Per esercitare i diritti:</strong> adriano@ristowai.com</p>
 
     <h3>9. Minori</h3>
     <p>
@@ -260,7 +260,7 @@ export const privacyPolicyContent = (
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
       <p><strong>Titolare del trattamento:</strong></p>
       <p>Ristowai – Genova (GE), Italia</p>
-      <p>Email: privacy@ristowai.com</p>
+      <p>Email: adriano@ristowai.com</p>
       <p>© 2025 Ristowai. Tutti i diritti riservati.</p>
     </div>
   </>
@@ -275,7 +275,7 @@ export const termsOfServiceContent = (
     <p>
       I presenti Termini di Servizio (&quot;Termini&quot;) disciplinano l&apos;accesso e l&apos;utilizzo della piattaforma Ristowai 
       (&quot;Piattaforma&quot; o &quot;Servizio&quot;), di proprietà e gestita da Ristowai, con sede operativa in Genova (GE), Italia, 
-      indirizzo email: info@ristowai.com.
+      indirizzo email: adriano@ristowai.com.
     </p>
     <p>
       Ristowai è una piattaforma software basata su intelligenza artificiale (AI) che offre servizi digitali per la gestione e 
@@ -414,7 +414,7 @@ export const termsOfServiceContent = (
     <h3>13. Contatti</h3>
     <p>Per richieste, chiarimenti o segnalazioni è possibile contattare:</p>
     <p><strong>Ristowai</strong></p>
-    <p>Email: info@ristowai.com</p>
+    <p>Email: adriano@ristowai.com</p>
 
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
       <p>© 2025 Ristowai – Tutti i diritti riservati.</p>

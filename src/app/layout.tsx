@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import { CustomCursor } from '@/components/landing-page/ui/CustomCursor';
 import { Providers } from './providers';
 import './globals.css';
@@ -33,6 +34,7 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </Providers>
+        <Script src="https://embeds.iubenda.com/widgets/1dca48ca-57cd-4479-9416-36114279903d.js" strategy="afterInteractive" />
       </body>
     </html>
   );

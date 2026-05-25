@@ -42,8 +42,6 @@ export const Footer = () => {
                 <span>Food cost intelligence</span>
                 <span className={styles.separator}>·</span>
                 <span>Analisi operativa</span>
-                <span className={styles.separator}>·</span>
-                <span>olmali</span>
               </p>
             </div>
           </div>
@@ -79,9 +77,12 @@ export const Footer = () => {
         </div>
 
         <div className={styles.bottomSection}>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} Ristowai. All rights reserved.
-          </p>
+          <div className={styles.bottomLeft}>
+            <p className={styles.copyright}>
+              © {new Date().getFullYear()} Ristowai. All rights reserved.
+            </p>
+            <p className={styles.legalAddress}>Genova - Italia</p>
+          </div>
           <div className={styles.socialLinks}>
             <Link href={"https://www.linkedin.com/company/ristowai/" as unknown as UrlObject} className={styles.socialLink} target="_blank">
               <Linkedin size={20} />

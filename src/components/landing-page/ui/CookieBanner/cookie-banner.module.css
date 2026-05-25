@@ -1,0 +1,119 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--pure-white);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  padding: var(--spacing-xl) 0;
+  animation: slideUp 0.4s var(--ease-out-expo);
+}
+
+.container {
+  width: 90%;
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+}
+
+.text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.text a {
+  color: var(--primary-green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text a:hover {
+  opacity: 0.8;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.acceptButton {
+  padding: 10px 24px;
+  background: var(--primary-green);
+  color: var(--pure-white);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.acceptButton:hover {
+  opacity: 0.9;
+}
+
+.rejectButton {
+  padding: 10px 24px;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.rejectButton:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .acceptButton,
+  .rejectButton {
+    flex: 1;
+  }
+}

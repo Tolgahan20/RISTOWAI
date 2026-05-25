@@ -129,9 +129,20 @@
   padding-top: var(--spacing-2xl);
 }
 
+.bottomLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .copyright {
   color: rgba(255, 255, 255, 0.4);
   font-size: 14px;
+}
+
+.legalAddress {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
 }
 
 .socialLinks {
